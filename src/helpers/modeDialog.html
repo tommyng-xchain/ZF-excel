@@ -1,0 +1,59 @@
+<!-- Copyright (c) Microsoft. All rights reserved. Licensed under the MIT license. See full license in root of repo. -->
+<!-- This file shows how to create an empty HTML file to load an AAD login script. -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+
+    <!-- Office JavaScript API -->
+    <script type="text/javascript" src="https://ajax.microsoft.com/ajax/4.0/MicrosoftAjax.js"></script>
+    <script type="text/javascript" src="https://alcdn.msauth.net/browser/2.26.0/js/msal-browser.min.js"></script>
+    <script type="text/javascript" src="https://appsforoffice.microsoft.com/lib/1.1/hosted/office.debug.js"></script>
+    
+    <!-- For the Office UI Fabric, go to http://aka.ms/office-ui-fabric to learn more. -->
+    <link rel="stylesheet" href="https://appsforoffice.microsoft.com/fabric/2.1.0/fabric.min.css">
+    <link rel="stylesheet" href="https://appsforoffice.microsoft.com/fabric/2.1.0/fabric.components.min.css">
+    <script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.2.1.min.js"></script>
+    <style>
+         .btn{
+            margin-left: 6px;
+         margin-top: 10px;
+         }
+        </style>
+    <script>
+        Office.initialize = function () {
+            $('#Button_mode_UAT').click({mode: "uat"}, butClick);
+            $('#Button_mode_MIGRATION').click({mode: "migration"}, butClick);
+            $('#Button_mode_PRODUCTION').click({mode: "production"}, butClick);
+        };
+
+        function butClick(args)
+        {
+            console.log(args);
+            Office.context.ui.messageParent(JSON.stringify(args.data));
+        }
+        
+    </script>
+</head>
+
+<body style="display: grid;">
+    <!-- <button class="ms-Button ms-Button--primary btn" id="Button_mode_UAT">
+        <span class="ms-Button-icon"><i class="ms-Icon ms-Icon--plus"></i></span>
+        <span class="ms-Button-label" id="button1-text">UAT</span>
+        <span class="ms-Button-description" id="button1-desc">UAT</span>
+    </button> -->
+    <button class="ms-Button ms-Button--primary btn"  id="Button_mode_MIGRATION">
+        <span class="ms-Button-icon"><i class="ms-Icon ms-Icon--plus"></i></span>
+        <span class="ms-Button-label" id="button2-text">MIGRATION</span>
+        <span class="ms-Button-description" id="button2-desc">MIGRATION</span>
+    </button>   
+    <button class="ms-Button ms-Button--primary btn" id="Button_mode_PRODUCTION">
+        <span class="ms-Button-icon"><i class="ms-Icon ms-Icon--plus"></i></span>
+        <span class="ms-Button-label" id="button2-text">PRODUCTION</span>
+        <span class="ms-Button-description" id="button2-desc">PRODUCTION</span>
+    </button>
+</body>
+</html>

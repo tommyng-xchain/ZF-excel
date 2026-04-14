@@ -1,0 +1,30 @@
+{
+  "name": "@primno/dataverse",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Dataverse / Dynamics 365 CE (on-premises) client for Node.JS. Provides authentication with connection string or OAuth 2.0.",
+  "repository": "github:primno/dataverse",
+  "scripts": {
+    "test": "jest",
+    "build": "npm run build -ws",
+    "release": "npm run build && changeset publish"
+  },
+  "author": "Xavier Monin",
+  "license": "MIT",
+  "workspaces": [
+    "packages/dataverse-client",
+    "packages/dataverse-auth"
+  ],
+  "devDependencies": {
+    "@changesets/cli": "^2.26.1",
+    "@types/node": "^18.14.0",
+    "jest": "^29.5.0",
+    "ts-jest": "^29.0.5",
+    "tslib": "^2.5.0"
+  },
+  "eslintIgnore": [
+    "build",
+    "dist",
+    "node_modules"
+  ]
+}

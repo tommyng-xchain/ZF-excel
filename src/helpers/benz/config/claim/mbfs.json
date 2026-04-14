@@ -1,0 +1,1185 @@
+{
+    "module": "CLAIM-MBFS",
+    "StartButtonLabel": "CLAIM-MBFS",
+    "moduleTypeFullName": "Claim item",
+    "action": null,
+    "Table_Main_LogicalName": "benz_prototypeclaimitemmainform",
+    "Table_Main_id_LogicalName": "benz_name",
+    "Table_Item_LogicalName": "benz_prototypeclaimitem",
+    "Table_item_main_relationship_LogicalName": "benz_prototypeclaimitemmainform",
+    "memotype_LogicalName": "benz_memotypeforzf",
+    "Table_linenumber_LogicalName": "benz_id",
+    "specialcase": {
+        "available": false,
+        "target": ""
+    },
+    "permissions": {
+        "start_button":[
+            "Benz_MBFS"
+        ],
+        "create_button": [
+            "Benz_MBFS"
+        ],
+        "Update_button": [
+            "Benz_MBFS"
+        ],
+        "GetData_button": [
+            "Benz_MBFS"
+        ],
+        "ImportData_button": [
+            "Benz_MBFS"
+        ]
+    },
+    "relationship": [
+        {
+            "id": "benz_prototypesalesmeasure",
+            "to_LogicalName": "benz_prototypesalesmeasure",
+            "from_LogicalName": "benz_prototypesalesmeasure",
+            "from_FieldLogicalName": "benz_prototypesalesmeasure",
+            "relationship_LogicalName": "benz_prototypeclaimitem_PrototypeSalesMeasure_",
+            "querys": [
+                {
+                    "EntityLogicalName": "benz_prototypesalesmeasures",
+                    "queryString": "$select=benz_name,benz_prototypesalesmeasureid&$filter=benz_name eq '{valueAfters}'",
+                    "queryOptions": ""
+                }
+            ]
+        },
+        {
+            "id": "benz_commissionnumber",
+            "to_LogicalName": "benz_commissionnumber",
+            "from_LogicalName": "benz_prototypeclaimitem",
+            "from_FieldLogicalName": "benz_commissionnumber",
+            "relationship_LogicalName": "benz_Commissionnumber",
+            "querys": [
+                {
+                    "EntityLogicalName": "benz_commissionnumbers",
+                    "queryString": "$select=benz_name,benz_commissionnumberid&$filter=benz_name eq '{valueAfters}'",
+                    "queryOptions": ""
+                }
+            ]
+        },
+        {
+            "id": "main",
+            "to_LogicalName": "benz_prototypeclaimitemmainform",
+            "from_LogicalName": "benz_prototypeclaimitem",
+            "relationship_LogicalName": "benz_PrototypeClaimItemMainForm"
+        },
+        {
+            "id": "benz_modeldesignation",
+            "to_LogicalName": "benz_prototypemodeldesignation",
+            "from_LogicalName": "benz_prototypeclaimitem",
+            "from_FieldLogicalName": "benz_modeldesignation",
+            "relationship_LogicalName": "benz_prototypeclaimitem_ModelDesignation_benz_",
+            "querys": [
+                {
+                    "EntityLogicalName": "benz_prototypemodeldesignations",
+                    "queryString": "$select=benz_name,benz_prototypemodeldesignationid&$filter=benz_name eq '{valueAfters}'",
+                    "queryOptions": ""
+                }
+            ]
+        },
+        {
+            "id": "benz_claimfinanceproduct",
+            "to_LogicalName": "benz_fsproduct",
+            "from_LogicalName": "benz_prototypeclaimitem",
+            "from_FieldLogicalName": "benz_claimfinanceproduct",
+            "relationship_LogicalName": "benz_prototypeclaimitem_claimfinanceproduct_benz_fsproduct",
+            "querys": [
+                {
+                    "EntityLogicalName": "benz_fsproducts",
+                    "queryString": "$select=benz_name,benz_fsproductid&$filter=benz_name eq '{valueAfters}'",
+                    "queryOptions": ""
+                }
+            ]
+        }
+    ],
+    "layout": [
+        {
+            "module": "claim",
+            "type": "highlight",
+            "id": "highlightTitle",
+            "action": [
+                "create",
+                "update"
+            ],
+            "cell": {
+                "format": {
+                    "fill": {
+                        "color": "#4472C4"
+                    }
+                },
+                "address": "1:1"
+            }
+        },
+        {
+            "module": "claim",
+            "type": "label",
+            "id": "Title",
+            "action": [
+                "create",
+                "update"
+            ],
+            "cell": {
+                "format": {
+                    "fill": {
+                        "color": "#4472C4"
+                    },
+                    "font": {
+                        "bold": true,
+                        "name": "Arial",
+                        "size": 18,
+                        "color": "#ffffff"
+                    }
+                },
+                "values": "Claim Form",
+                "address": "B1"
+            }
+        },
+        {
+            "module": "claim",
+            "type": "main-form-field",
+            "EntityLogicalName": "benz_prototypeclaimitemmainform",
+            "LogicalName": "benz_prototypeclaimitemmainformid",
+            "AttributeType": "String",
+            "enable": true,
+            "specialcase": false,
+            "title": "id",
+            "Label": "id",
+            "mandatory": false,
+            "action": [
+            ],
+            "cell": {
+                "columnHidden": true,
+                "numberFormat": "@",
+                "format": {
+                    "protection": {
+                        "locked": true
+                    }
+                },
+                "values": "",
+                "address": "A2"
+            }
+        },
+        {
+            "module": "claim",
+            "type": "label",
+            "id": "labelClaimID",
+            "action": [
+                "create",
+                "update"
+            ],
+            "cell": {
+                "format": {
+                    "fill": {
+                        "color": ""
+                    },
+                    "font": {
+                        "name": "",
+                        "size": 11,
+                        "color": ""
+                    }
+                },
+                "values": "Claim ID#",
+                "address": "C2"
+            }
+        },
+        {
+            "module": "claim",
+            "type": "main-form-field-gen",
+            "id": "ClaimID",
+            "EntityLogicalName": "benz_prototypeclaimitemmainform",
+            "LogicalName": "benz_name",
+            "AttributeType": "String",
+            "mandatory": true,
+            "enable": false,
+            "action": [
+                "create",
+                "update"
+            ],
+            "cell": {
+                "format": {
+                    "fill": {
+                        "color": "#FFFFCC"
+                    },
+                    "font": {
+                        "name": "",
+                        "size": 11,
+                        "color": ""
+                    },
+                    "inputtype": "text"
+                },
+                "values": "",
+                "address": "D2"
+            }
+        }
+    ],
+    "table": {
+        "name": "table_CLAIM_MBFS",
+        "address": "A8",
+        "rowIndex": 5,
+        "columnIndex": 0,
+        "hasHeaders": true,
+        "columns": [
+            {
+                "index": 0,
+                "EntityLogicalName": "benz_prototypeclaimitem",
+                "LogicalName": "benz_prototypeclaimitemid",
+                "AttributeType": "String",
+                "enable": true,
+                "specialcase": false,
+                "title": "id",
+                "Label": "id",
+                "mandatory": false,
+                "cell": {
+                    "numberFormat": "@",
+                    "format": {
+                        "protection": {
+                            "locked": true
+                        }
+                    },
+                    "values": ""
+                }
+            },
+            {
+                "index": 1,
+                "EntityLogicalName": "benz_prototypeclaimitem",
+                "LogicalName": "benz_id",
+                "AttributeType": "Number",
+                "enable": true,
+                "specialcase": false,
+                "title": "Line item no #",
+                "Label": "Line item no #",
+                "mandatory": false,
+                "cell": {
+                    "numberFormat": "#",
+                    "format": {
+                        "columnWidth": 50,
+                        "verticalAlignment": "Center",
+                        "horizontalAlignment": "Center",
+                        "font": {},
+                        "protection": {
+                            "locked": false
+                        }
+                    },
+                    "dataValidation": {
+                        "rule": {
+                            "wholeNumber": {
+                                "operator": "GreaterThanOrEqualTo",
+                                "formula1": 0
+                            }
+                        }
+                    },
+                    "values": "=ROW(A1)",
+                    "TableChanged": [
+                        {
+                            "type": "tabledata_unique"
+                        }
+                    ]
+                }
+            },
+            {
+                "index": 2,
+                "EntityLogicalName": "benz_prototypeclaimitem",
+                "LogicalName": "benz_prototypesalesmeasure",
+                "SchemaName": "benz_PrototypeSalesMeasure",
+                "AttributeType": "Lookup",
+                "LookupEntityLogicalName": "benz_prototypesalesmeasure",
+                "LookupEntityFieldLogicalName": "benz_name",
+                "LookupAllowUsingExist": true,
+                "Label": "Measure ID *",
+                "values": "",
+                "mandatory": true,
+                "enable": true,
+                "specialcase": true,
+                "title": "Measure ID *",
+                "cell": {
+                    "numberFormat": "@",
+                    "format": {
+                        "verticalAlignment": "Center",
+                        "horizontalAlignment": "Center",
+                        "font": {},
+                        "protection": {
+                            "locked": false
+                        }
+                    },
+                    "values": "",
+                    "TableChanged": [
+                        {
+                            "type": "tabledata_checkisnotinconjunctionwith",
+                            "EntityLogicalName": "benz_commissionnumber",
+                            "queryString": "?$select=benz_name&$filter=benz_name eq '{benz_commissionnumber}' and statecode eq 0 &$expand=benz_prototypeclaimitem_Commissionnumber_benz_($select=benz_name;$expand=benz_PrototypeSalesMeasure($select=benz_name,benz_notinconjunctionwith;$filter=contains(benz_notinconjunctionwith,'{benz_prototypesalesmeasure}')))",
+                            "EntityLogicalName1": "benz_prototypesalesmeasure",
+                            "queryString1": "$select=benz_name,benz_notinconjunctionwith&$filter=(benz_name eq '{benz_prototypesalesmeasure}' and contains(benz_notinconjunctionwith,'{valueAfters}')) or (benz_name eq '{valueAfters}' and contains(benz_notinconjunctionwith,'{benz_prototypesalesmeasure}'))",
+                            "FieldLogicalNames": [
+                                "benz_commissionnumber",
+                                "benz_prototypesalesmeasure"
+                            ],
+                            "queryOptions": "",
+                            "targetvalue": [
+                                "benz_prototypeclaimitem_Commissionnumber_benz_",
+                                "benz_PrototypeSalesMeasure"
+                            ],
+                            "findKey": "benz_commissionnumber",
+                            "ErrorMsg": "{currentMeasure} with commission number - {commissionNo} is not conjunction with {otherMeasure}"
+                        },
+                        {
+                            "type": "tabledata_getdata",
+                            "setFieldData": [
+                                {
+                                    "settype": "date",
+                                    "operator": "EqualTo",
+                                    "ToLogicalName": [
+                                        "benz_contractactivationdate"
+                                    ],
+                                    "FromLogicalNames": [
+                                        "benz_finalfscontractactivationby"
+                                    ]
+                                },
+                                {
+                                    "settype": "list",
+                                    "ToLogicalName": [
+                                        "benz_modeldesignation"
+                                    ],
+                                    "FromLogicalNames": [
+                                        "benz_m2m_SalesMeasure_CarModel_result.benz_name"
+                                    ]
+                                },
+                                {
+                                    "settype": "date",
+                                    "operator": "LessThanOrEqualTo",
+                                    "ToLogicalName": [
+                                        "benz_licenseddate"
+                                    ],
+                                    "FromLogicalNames": [
+                                        "benz_finallicensedby"
+                                    ]
+                                },
+                                {
+                                    "settype": "date",
+                                    "operator": "Between",
+                                    "ToLogicalName": [
+                                        "benz_zfcontractdate"
+                                    ],
+                                    "FromLogicalNames": [
+                                        "benz_finalcontractdatefrom",
+                                        "benz_finalcontractdateto"
+                                    ]
+                                },
+                                {
+                                    "settype": "date",
+                                    "operator": "Between",
+                                    "ToLogicalName": [
+                                        "benz_applicationdate"
+                                    ],
+                                    "FromLogicalNames": [
+                                        "benz_finalapplicationdatefrom",
+                                        "benz_finalapplicationdateto"
+                                    ]
+                                },
+                                {
+                                    "settype": "list",
+                                    "ToLogicalName": [
+                                        "benz_productionyear"
+                                    ],
+                                    "FromLogicalNames": [
+                                        "benz_applicableproyear"
+                                    ]
+                                },
+                                {
+                                    "settype": "decimal",
+                                    "operator": "LessThanOrEqualTo",
+                                    "ToLogicalName": [
+                                        "benz_mbhksupportamount"
+                                    ],
+                                    "FromLogicalNames": [
+                                        "benz_mbhksupportperunit"
+                                    ],
+                                    "ExceedCheck": [
+                                        "benz_mbhksupportperunitexceedzf"
+                                    ]
+                                },
+                                {
+                                    "settype": "list",
+                                    "ToLogicalName": [
+                                        "benz_claimfinanceproduct"
+                                    ],
+                                    "FromLogicalNames": [
+                                        "benz_FinanceType.benz_name"
+                                    ]
+                                }
+                            ],
+                            "EntityLogicalName": "benz_prototypesalesmeasure",
+                            "queryString": "$filter=benz_name eq '{valueAfters}'&$expand=benz_m2m_SalesMeasure_CarModel_result($select=benz_name;$orderby=benz_name asc)",
+                            "queryOptions": ""
+                        },
+                        {
+                            "type": "tabledata_getdataisexist",
+                            "EntityLogicalName": "benz_prototypesalesmeasure",
+                            "queryString": "$filter=benz_name eq '{valueAfters}' and benz_lineitemstatus eq 650230003 and benz_companyname eq 650230003",
+                            "queryString1": "$filter=benz_prototypesalesmeasureid eq '{benz_prototypesalesmeasure}' and benz_lineitemstatus eq 650230003 and benz_companyname eq 650230003",
+                            "queryOptions": ""
+                        }
+                    ]
+                }
+            },
+            {
+                "index": 3,
+                "mandatory": false,
+                "enable": true,
+                "specialcase": true,
+                "title": "Application Date",
+                "EntityLogicalName": "benz_prototypeclaimitem",
+                "LogicalName": "benz_applicationdate",
+                "AttributeType": "Date",
+                "Label": "Application Date",
+                "values": "",
+                "cell": {
+                    "numberFormat": "dd/MMM/yyyy",
+                    "format": {
+                        "verticalAlignment": "Center",
+                        "horizontalAlignment": "Center",
+                        "font": {},
+                        "protection": {
+                            "locked": false
+                        }
+                    },
+                    "dataValidation": {
+                        "rule": {
+                            "date": {
+                                "operator": "GreaterThan",
+                                "formula1": "1/1/2000"
+                            }
+                        }
+                    },
+                    "values": "",
+                    "TableChanged": [
+                        {
+                            "type": "tabledata_checkdatavalidation",
+                            "setFieldData": [
+                                {
+                                    "settype": "date",
+                                    "operator": "Between",
+                                    "ToLogicalName": [
+                                        "benz_applicationdate"
+                                    ],
+                                    "FromLogicalNames": [
+                                        "benz_finalapplicationdatefrom",
+                                        "benz_finalapplicationdateto"
+                                    ]
+                                }
+                            ],
+                            "EntityLogicalName": "benz_prototypesalesmeasure",
+                            "queryString": "$select={fromLogicalNames}&$filter=benz_name eq '{valueAfters}'&$expand=benz_m2m_SalesMeasure_CarModel_result($select=benz_name;$orderby=benz_name asc)",
+                            "queryOptions": ""
+                        }
+                    ]
+                }
+            },
+            {
+                "index": 4,
+                "mandatory": false,
+                "enable": true,
+                "specialcase": true,
+                "title": "FS Contract activation date",
+                "EntityLogicalName": "benz_prototypeclaimitem",
+                "LogicalName": "benz_contractactivationdate",
+                "AttributeType": "Date",
+                "Label": "FS Contract activation date",
+                "values": "",
+                "cell": {
+                    "numberFormat": "dd/MMM/yyyy",
+                    "format": {
+                        "verticalAlignment": "Center",
+                        "horizontalAlignment": "Center",
+                        "font": {},
+                        "protection": {
+                            "locked": false
+                        }
+                    },
+                    "dataValidation": {
+                        "rule": {
+                            "date": {
+                                "operator": "GreaterThan",
+                                "formula1": "1/1/2000"
+                            }
+                        }
+                    },
+                    "values": "",
+                    "TableChanged": []
+                }
+            },
+            {
+                "index": 5,
+                "mandatory": true,
+                "enable": true,
+                "specialcase": true,
+                "title": "ZF Contract date *",
+                "EntityLogicalName": "benz_prototypeclaimitem",
+                "LogicalName": "benz_zfcontractdate",
+                "AttributeType": "Date",
+                "Label": "ZF Contract date *",
+                "values": "",
+                "cell": {
+                    "numberFormat": "dd/MMM/yyyy",
+                    "format": {
+                        "verticalAlignment": "Center",
+                        "horizontalAlignment": "Center",
+                        "font": {},
+                        "protection": {
+                            "locked": false
+                        }
+                    },
+                    "dataValidation": {
+                        "rule": {
+                            "date": {
+                                "operator": "GreaterThan",
+                                "formula1": "1/1/2000"
+                            }
+                        }
+                    },
+                    "values": "",
+                    "TableChanged": [
+                        {
+                            "type": "tabledata_checkdatavalidation",
+                            "setFieldData": [
+                                {
+                                    "settype": "date",
+                                    "operator": "Between",
+                                    "ToLogicalName": [
+                                        "benz_zfcontractdate"
+                                    ],
+                                    "FromLogicalNames": [
+                                        "benz_finalcontractdatefrom",
+                                        "benz_finalcontractdateto"
+                                    ]
+                                }
+                            ],
+                            "EntityLogicalName": "benz_prototypesalesmeasure",
+                            "queryString": "$select={fromLogicalNames}&$filter=benz_name eq '{valueAfters}'&$expand=benz_m2m_SalesMeasure_CarModel_result($select=benz_name;$orderby=benz_name asc)",
+                            "queryOptions": ""
+                        }
+                    ]
+                }
+            },
+            {
+                "index": 6,
+                "mandatory": true,
+                "enable": true,
+                "specialcase": true,
+                "title": "Licensed date *",
+                "EntityLogicalName": "benz_prototypeclaimitem",
+                "LogicalName": "benz_licenseddate",
+                "AttributeType": "Date",
+                "Label": "Licensed date *",
+                "values": "",
+                "cell": {
+                    "numberFormat": "dd/MMM/yyyy",
+                    "format": {
+                        "verticalAlignment": "Center",
+                        "horizontalAlignment": "Center",
+                        "font": {},
+                        "protection": {
+                            "locked": false
+                        }
+                    },
+                    "values": "",
+                    "dataValidation": {
+                        "rule": {
+                            "date": {
+                                "operator": "GreaterThan",
+                                "formula1": "1/1/2000"
+                            }
+                        }
+                    },
+                    "TableChanged": [
+                        {
+                            "type": "tabledata_checkdatavalidation",
+                            "setFieldData": [
+                                {
+                                    "settype": "date",
+                                    "operator": "LessThanOrEqualTo",
+                                    "ToLogicalName": [
+                                        "benz_licenseddate"
+                                    ],
+                                    "FromLogicalNames": [
+                                        "benz_finallicensedby"
+                                    ]
+                                }
+                            ],
+                            "EntityLogicalName": "benz_prototypesalesmeasure",
+                            "queryString": "$select={fromLogicalNames}&$filter=benz_name eq '{valueAfters}'&$expand=benz_m2m_SalesMeasure_CarModel_result($select=benz_name;$orderby=benz_name asc)",
+                            "queryOptions": ""
+                        }
+                    ]
+                }
+            },
+            {
+                "index": 7,
+                "mandatory": false,
+                "enable": true,
+                "specialcase": true,
+                "title": "FS Contract no.",
+                "EntityLogicalName": "benz_prototypeclaimitem",
+                "LogicalName": "benz_fscontractno",
+                "AttributeType": "String",
+                "Label": "FS Contract no.",
+                "values": "",
+                "cell": {
+                    "numberFormat": "@",
+                    "format": {
+                        "verticalAlignment": "Center",
+                        "horizontalAlignment": "Center",
+                        "font": {},
+                        "protection": {
+                            "locked": false
+                        }
+                    },
+                    "values": "",
+                    "TableChanged": []
+                }
+            },
+            {
+                "index": 8,
+                "mandatory": true,
+                "enable": true,
+                "specialcase": true,
+                "title": "Finance product *",
+                "EntityLogicalName": "benz_prototypeclaimitem",
+                "LogicalName": "benz_claimfinanceproduct",
+                "ValueLogicalName": "_benz_claimfinanceproduct_value",
+                "SchemaName": "benz_claimfinanceproduct",
+                "AttributeType": "Lookup",
+                "LookupEntityLogicalName": "benz_fsproduct",
+                "LookupEntityFieldLogicalName": "benz_name",
+                "LookupAllowUsingExist": true,
+                "Label": "Finance product *",
+                "values": "",
+                "cell": {
+                    "format": {
+                        "font": {},
+                        "protection": {
+                            "locked": false
+                        }
+                    },
+                    "values": "",
+                    "dataValidation": {
+                        "rule": {
+                            "list": {
+                                "inCellDropDown": true,
+                                "source": ""
+                            }
+                        }
+                    },
+                    "TableChanged": [
+                        {
+                            "type": "tabledata_checkdatavalidation",
+                            "setFieldData": [
+                                {
+                                    "settype": "list",
+                                    "ToLogicalName": [
+                                        "benz_claimfinanceproduct"
+                                    ],
+                                    "FromLogicalNames": [
+                                        "benz_FinanceType.benz_name"
+                                    ]
+                                }
+                            ],
+                            "EntityLogicalName": "benz_prototypesalesmeasure",
+                            "queryString": "$filter=benz_name eq '{valueAfters}'&$expand=benz_m2m_SalesMeasure_CarModel_result($select=benz_name;$orderby=benz_name asc)",
+                            "queryOptions": ""
+                        }
+                    ]
+                }
+            },
+            {
+                "index": 9,
+                "mandatory": false,
+                "enable": true,
+                "specialcase": true,
+                "title": "Campaign",
+                "EntityLogicalName": "benz_prototypeclaimitem",
+                "LogicalName": "benz_campaign",
+                "AttributeType": "String",
+                "Label": "Campaign",
+                "values": "",
+                "cell": {
+                    "numberFormat": "@",
+                    "format": {
+                        "verticalAlignment": "Center",
+                        "horizontalAlignment": "Center",
+                        "font": {},
+                        "protection": {
+                            "locked": false
+                        }
+                    },
+                    "values": "",
+                    "TableChanged": []
+                }
+            },
+            {
+                "index": 10,
+                "mandatory": false,
+                "enable": true,
+                "specialcase": true,
+                "title": "Model Checking",
+                "EntityLogicalName": "benz_prototypeclaimitem",
+                "LogicalName": "benz_modelcheck",
+                "AttributeType": "String",
+                "Label": "Model Checking",
+                "values": "",
+                "cell": {
+                    "numberFormat": "@",
+                    "format": {
+                        "verticalAlignment": "Center",
+                        "horizontalAlignment": "Center",
+                        "font": {},
+                        "protection": {
+                            "locked": false
+                        }
+                    },
+                    "values": "",
+                    "TableChanged": []
+                }
+            },
+            {
+                "index": 11,
+                "mandatory": true,
+                "enable": true,
+                "specialcase": true,
+                "title": "Model *",
+                "EntityLogicalName": "benz_prototypeclaimitem",
+                "LogicalName": "benz_modeldesignation",
+                "SchemaName": "benz_ModelDesignation",
+                "ValueLogicalName": "_benz_modeldesignation_value",
+                "AttributeType": "Lookup",
+                "Label": "Model *",
+                "LookupEntityLogicalName": "benz_prototypemodeldesignation",
+                "LookupEntityFieldLogicalName": "benz_name",
+                "LookupAllowUsingExist": true,
+                "values": "",
+                "cell": {
+                    "numberFormat": "@",
+                    "format": {
+                        "verticalAlignment": "Center",
+                        "horizontalAlignment": "Center",
+                        "font": {},
+                        "protection": {
+                            "locked": false
+                        }
+                    },
+                    "values": "",
+                    "dataValidation": {
+                        "rule": {
+                            "list": {
+                                "inCellDropDown": true,
+                                "source": ""
+                            }
+                        }
+                    },
+                    "TableChanged": [
+                        {
+                            "type": "tabledata_choicesinselection",
+                            "EntityLogicalName": "benz_prototypesalesmeasure",
+                            "EntityLogicalName1": "benz_m2m_SalesMeasure_CarModel_result",
+                            "queryString": "$filter=benz_name eq '{measureID}'&$expand=benz_m2m_SalesMeasure_CarModel_result($select=benz_name;$orderby=benz_name asc)",
+                            "FieldLogicalNames": [
+                                "benz_prototypemodeldesignationid"
+                            ],
+                            "tablefield" : [
+                                "benz_prototypemodeldesignations"
+                            ],
+                            "queryOptions": ""
+                        }
+                    ]
+                },
+                "setToString": true
+            },
+            {
+                "index": 12,
+                "mandatory": true,
+                "enable": true,
+                "specialcase": true,
+                "title": "Production Year *",
+                "EntityLogicalName": "benz_prototypeclaimitem",
+                "LogicalName": "benz_productionyear",
+                "AttributeType": "String",
+                "Label": "Production Year *",
+                "values": "",
+                "cell": {
+                    "columnWidth": 350,
+                    "numberFormat": "#",
+                    "format": {
+                        "verticalAlignment": "Center",
+                        "horizontalAlignment": "Center",
+                        "font": {},
+                        "protection": {
+                            "locked": false
+                        }
+                    },
+                    "values": "",
+                    "dataValidation": {
+                        "ignoreBlanks": false,
+                        "prompt": {
+                            "message": "",
+                            "showPrompt": false,
+                            "title": ""
+                        },
+                        "errorAlert": {
+                            "showAlert": false,
+                            "message": "",
+                            "style": "Stop",
+                            "title": ""
+                        },
+                        "rule": {
+                            "list": {
+                                "inCellDropDown": true,
+                                "source": ""
+                            }
+                        }
+                    },
+                    "TableChanged": [
+                        {
+                            "type": "tabledata_regexp",
+                            "regexp": "^(?:\\d{4})$"
+                        },
+                        {
+                            "type": "tabledata_checkdatavalidation",
+                            "setFieldData": [
+                                {
+                                    "settype": "list",
+                                    "ToLogicalName": [
+                                        "benz_productionyear"
+                                    ],
+                                    "FromLogicalNames": [
+                                        "benz_applicableproyear"
+                                    ]
+                                }
+                            ],
+                            "EntityLogicalName": "benz_prototypesalesmeasure",
+                            "queryString": "$select={fromLogicalNames}&$filter=benz_name eq '{valueAfters}'&$expand=benz_m2m_SalesMeasure_CarModel_result($select=benz_name;$orderby=benz_name asc)",
+                            "queryOptions": ""
+                        }
+                    ]
+                }
+            },
+            {
+                "index": 13,
+                "EntityLogicalName": "benz_prototypeclaimitem",
+                "LogicalName": "benz_chassisno",
+                "AttributeType": "String",
+                "Label": "Chassis no *",
+                "mandatory": true,
+                "enable": true,
+                "title": "Chassis no",
+                "cell": {
+                    "numberFormat": "@",
+                    "format": {
+                        "font": {},
+                        "protection": {
+                            "locked": false
+                        }
+                    },
+                    "dataValidation": {
+                        "rule": {
+                            "TextLength": {
+                                "operator": "EqualTo",
+                                "formula1": 17
+                            }
+                        }
+                    },
+                    "values": "",
+                    "TableChanged": [
+                        {
+                            "type": "tabledata_regexp",
+                            "regexp": "^(?:\\w{17})$"
+                        }
+                    ]
+                }
+            },
+            {
+                "index": 14,
+                "mandatory": true,
+                "enable": true,
+                "specialcase": true,
+                "title": "Contract term (month) *",
+                "EntityLogicalName": "benz_prototypeclaimitem",
+                "LogicalName": "benz_contracttermmonth",
+                "AttributeType": "text",
+                "Label": "Contract term (month) *",
+                "values": "",
+                "cell": {
+                    "numberFormat": "@",
+                    "format": {
+                        "protection": {
+                            "locked": false
+                        }
+                    },
+                    "values": "",
+                    "TableChanged": [
+                        {
+                            "type": "tabledata_regexp",
+                            "regexp": "^(?:\\d{1,2})$"
+                        }
+                    ]
+                }
+            },
+            {
+                "index": 15,
+                "mandatory": true,
+                "enable": true,
+                "specialcase": true,
+                "title": "Interest rate (%) *",
+                "EntityLogicalName": "benz_prototypeclaimitem",
+                "LogicalName": "benz_interestrate",
+                "AttributeType": "percentage",
+                "Label": "Interest rate (%) *",
+                "values": "",
+                "cell": {
+                    "numberFormat": "0.00%",
+                    "format": {
+                        "verticalAlignment": "Center",
+                        "horizontalAlignment": "Center",
+                        "font": {},
+                        "protection": {
+                            "locked": false
+                        }
+                    },
+                    "dataValidation": {
+                        "rule": {
+                            "decimal": {
+                                "operator": "GreaterThanOrEqualTo",
+                                "formula1": 0
+                            }
+                        }
+                    },
+                    "values": "",
+                    "TableChanged": []
+                }
+            },
+            {
+                "index": 16,
+                "mandatory": true,
+                "enable": true,
+                "specialcase": true,
+                "title": "Monthly payment *",
+                "EntityLogicalName": "benz_prototypeclaimitem",
+                "LogicalName": "benz_monthlypayment",
+                "AttributeType": "Number",
+                "Label": "Monthly payment *",
+                "values": "",
+                "cell": {
+                    "numberFormat": "$#,##0.00",
+                    "format": {
+                        "verticalAlignment": "Center",
+                        "horizontalAlignment": "Center",
+                        "font": {},
+                        "protection": {
+                            "locked": false
+                        }
+                    },
+                    "dataValidation": {
+                        "rule": {
+                            "decimal": {
+                                "operator": "GreaterThanOrEqualTo",
+                                "formula1": 0
+                            }
+                        }
+                    },
+                    "values": "",
+                    "TableChanged": []
+                }
+            },
+            {
+                "index": 17,
+                "mandatory": true,
+                "enable": true,
+                "specialcase": true,
+                "title": "Contract net financed amount *",
+                "EntityLogicalName": "benz_prototypeclaimitem",
+                "LogicalName": "benz_contractnetfinancedamount",
+                "AttributeType": "Number",
+                "Label": "Contract net financed amount *",
+                "values": "",
+                "cell": {
+                    "numberFormat": "$#,##0.00",
+                    "format": {
+                        "verticalAlignment": "Center",
+                        "horizontalAlignment": "Center",
+                        "font": {},
+                        "protection": {
+                            "locked": false
+                        }
+                    },
+                    "dataValidation": {
+                        "rule": {
+                            "decimal": {
+                                "operator": "GreaterThanOrEqualTo",
+                                "formula1": 0
+                            }
+                        }
+                    },
+                    "values": "0",
+                    "defalutValues": "0",
+                    "TableChanged": []
+                }
+            },
+            {
+                "index": 18,
+                "mandatory": true,
+                "enable": true,
+                "specialcase": true,
+                "title": "Total Contribution",
+                "EntityLogicalName": "benz_prototypeclaimitem",
+                "LogicalName": "benz_totalcontribution",
+                "AttributeType": "Number",
+                "Label": "Total Contribution",
+                "values": "",
+                "cell": {
+                    "numberFormat": "$#,##0.00",
+                    "format": {
+                        "verticalAlignment": "Center",
+                        "horizontalAlignment": "Center",
+                        "font": {},
+                        "protection": {
+                            "locked": false
+                        }
+                    },
+                    "dataValidation": {
+                        "rule": {
+                            "decimal": {
+                                "operator": "GreaterThanOrEqualTo",
+                                "formula1": 0
+                            }
+                        }
+                    },
+                    "values": "0",
+                    "defalutValues": "0",
+                    "TableChanged": []
+                }
+            },
+            {
+                "index": 19,
+                "mandatory": true,
+                "enable": true,
+                "specialcase": true,
+                "title": "MBHK Contribution *",
+                "EntityLogicalName": "benz_prototypeclaimitem",
+                "LogicalName": "benz_mbhksupportamount",
+                "AttributeType": "Number",
+                "Label": "MBHK Contribution *",
+                "values": "",
+                "cell": {
+                    "numberFormat": "$#,##0.00",
+                    "format": {
+                        "verticalAlignment": "Center",
+                        "horizontalAlignment": "Center",
+                        "font": {},
+                        "protection": {
+                            "locked": false
+                        }
+                    },
+                    "dataValidation": {
+                        "rule": {
+                            "decimal": {
+                                "operator": "GreaterThanOrEqualTo",
+                                "formula1": 0
+                            }
+                        }
+                    },
+                    "values": "0",
+                    "defalutValues": "0",
+                    "TableChanged": []
+                }
+            },
+            {
+                "index": 20,
+                "mandatory": true,
+                "enable": true,
+                "specialcase": false,
+                "title": "Commission No. *",
+                "EntityLogicalName": "benz_prototypeclaimitem",
+                "LookupEntityLogicalName": "benz_commissionnumber",
+                "LookupEntityFieldLogicalName": "benz_name",
+                "relationship": {
+                    "type": "Many-to-many",
+                    "LogicalName": "benz_prototypeclaimitem_Commissionnumber_benz_",
+                    "RelatedLogicalName": "benz_commissionnumber"
+                },
+                "ValueLogicalName": "_benz_commissionnumber_value",
+                "LogicalName": "benz_commissionnumber",
+                "SchemaName": "benz_Commissionnumber",
+                "AttributeType": "Lookup",
+                "LookupActionType": "create",
+                "LookupAllowUsingExist": false,
+                "Label": "Commission No. *",
+                "values": "",
+                "cell": {
+                    "numberFormat": "@",
+                    "format": {
+                        "verticalAlignment": "Center",
+                        "horizontalAlignment": "Center",
+                        "font": {},
+                        "protection": {
+                            "locked": false
+                        }
+                    },
+                    "values": "",
+                    "TableChanged": [
+                        {
+                            "type": "tabledata_regexp",
+                            "regexp": "^(?:\\d{10})$"
+                        },
+                        {
+                            "type": "tabledata_checkisnotinconjunctionwith",
+                            "EntityLogicalName": "benz_commissionnumber",
+                            "queryString": "$select=benz_name&$filter=benz_name eq '{benz_commissionnumber}' and statecode eq 0 &$expand=benz_prototypeclaimitem_Commissionnumber_benz_($select=benz_name;$expand=benz_PrototypeSalesMeasure($select=benz_name,benz_notinconjunctionwith;$filter=contains(benz_notinconjunctionwith,'{benz_prototypesalesmeasure}')))",
+                            "EntityLogicalName1": "benz_prototypesalesmeasure",
+                            "queryString1": "$select=benz_name,benz_notinconjunctionwith&$filter=(benz_name eq '{benz_prototypesalesmeasure}' and contains(benz_notinconjunctionwith,'{valueAfters}')) or (benz_name eq '{valueAfters}' and contains(benz_notinconjunctionwith,'{benz_prototypesalesmeasure}'))",
+                            "FieldLogicalNames": [
+                                "benz_commissionnumber",
+                                "benz_prototypesalesmeasure"
+                            ],
+                            "queryOptions": "",
+                            "targetvalue": [
+                                "benz_prototypeclaimitem_Commissionnumber_benz_",
+                                "benz_PrototypeSalesMeasure"
+                            ],
+                            "findKey": "benz_commissionnumber",
+                            "ErrorMsg": "{currentMeasure} with commission number - {commissionNo} is not conjunction with {otherMeasure}"
+                        },
+                        {
+                            "type": "tabledata_getdataisnotexist",
+                            "EntityLogicalName": "benz_commissionnumber",
+                            "queryString": "$filter=benz_name eq '{valueAfters}' and benz_savedmeasureidname eq '{measureID}' and statecode eq 0",
+                            "queryStringCheck": "$filter=benz_name eq '{valueAfters}' and _benz_measureid_value eq '{measureID}' and statecode eq 0",
+                            "queryOptions": "",
+                            "ErrorMsg": "{currentMeasure} with commission number - {commissionNo} is already exist"
+                        },
+                        {
+                            "type": "tabledata_checkdatainstring",
+                            "EntityLogicalName": "benz_prototypesalesmeasure",
+                            "queryString": "$filter=benz_name eq '{measureID}'",
+                            "FieldLogicalNames": [
+                                "benz_commissionno"
+                            ],
+                            "queryOptions": "benz_commissionno",
+                            "ErrorMsg": "{measureName} need to match commission number in sales measure"
+                        },
+                        {
+                            "type": "tabledata_commissionnounique",
+                            "ErrorMsg": "{measureName} with commission number {commissionNo} is duplicated"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    "main_hardcode": [
+        {
+            "LogicalName": "benz_companyname",
+            "value": 650230003,
+            "ZFCompany": 650230000
+        }
+    ]
+}

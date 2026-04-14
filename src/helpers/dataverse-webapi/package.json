@@ -1,0 +1,38 @@
+{
+  "name": "dataverse-webapi",
+  "version": "2.4.2",
+  "description": "Dataverse Web Api TypeScript Module",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "license": "MIT",
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/derekfinlinson/powerapps-tools"
+  },
+  "scripts": {
+    "build": "tsc -p .",
+    "lint": "eslint",
+    "clean": "rimraf lib"
+  },
+  "author": "Derek Finlinson",
+  "keywords": [
+    "dataverse",
+    "dynamics 365",
+    "dynamics 365",
+    "webapi",
+    "xrm",
+    "typescript",
+    "d365",
+    "common data service"
+  ],
+  "devDependencies": {
+    "@types/node": "^16.18.37",
+    "@types/xrm": "^9.0.73"
+  },
+  "volta": {
+    "extends": "../../package.json"
+  }
+}

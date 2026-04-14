@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0" xmlns:ov="http://schemas.microsoft.com/office/taskpaneappversionoverrides" xsi:type="TaskPaneApp">
+  <Id>b0a2974f-59bb-497f-aa55-e709fd4f53e1</Id>
+  <Version>1.0.0.1</Version>
+  <ProviderName>Benz</ProviderName>
+  <DefaultLocale>en-US</DefaultLocale>
+  <DisplayName DefaultValue="Benz"/>
+  <Description DefaultValue="[Benz] Sales Measures System"/>
+  <IconUrl DefaultValue="https://exceluat.blob.core.windows.net/assets/icon-32.png"/>
+  <HighResolutionIconUrl DefaultValue="https://exceluat.blob.core.windows.net/assets/icon-64.png"/>
+  <SupportUrl DefaultValue="https://exceluat.blob.core.windows.net/help"/>
+  <AppDomains>
+    <AppDomain>https://exceluat.blob.core.windows.net</AppDomain>
+  </AppDomains>
+  <Hosts>
+    <Host Name="Workbook"/>
+  </Hosts>
+  <DefaultSettings>
+    <SourceLocation DefaultValue="https://exceluat.blob.core.windows.net/taskpane.html"/>
+  </DefaultSettings>
+  <Permissions>ReadWriteDocument</Permissions>
+  <VersionOverrides xmlns="http://schemas.microsoft.com/office/taskpaneappversionoverrides" xsi:type="VersionOverridesV1_0">
+    <Hosts>
+      <Host xsi:type="Workbook">
+       <Runtimes>
+          <Runtime resid="Taskpane.Url" lifetime="long" />
+        </Runtimes>
+        <DesktopFormFactor>
+          <GetStarted>
+            <Title resid="GetStarted.Title"/>
+            <Description resid="GetStarted.Description"/>
+            <LearnMoreUrl resid="GetStarted.LearnMoreUrl"/>
+          </GetStarted>
+          <!-- <FunctionFile resid="Taskpane.Url" /> -->
+          <ExtensionPoint xsi:type="PrimaryCommandSurface">
+            <OfficeTab id="TabHome">
+              <Group id="CommandsGroup">
+                <Label resid="CommandsGroup.Label"/>
+                <Icon>
+                  <bt:Image size="16" resid="Icon.16x16"/>
+                  <bt:Image size="32" resid="Icon.32x32"/>
+                  <bt:Image size="80" resid="Icon.80x80"/>
+                </Icon>
+                <Control xsi:type="Button" id="TaskpaneButton">
+                  <Label resid="TaskpaneButton.Label"/>
+                  <Supertip>
+                    <Title resid="TaskpaneButton.Label"/>
+                    <Description resid="TaskpaneButton.Tooltip"/>
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.16x16"/>
+                    <bt:Image size="32" resid="Icon.32x32"/>
+                    <bt:Image size="80" resid="Icon.80x80"/>
+                  </Icon>
+                  <Action xsi:type="ShowTaskpane">
+                    <TaskpaneId>ButtonId1</TaskpaneId>
+                    <SourceLocation resid="Taskpane.Url"/>
+                  </Action>
+                </Control>
+              </Group>
+            </OfficeTab>
+          </ExtensionPoint>
+        </DesktopFormFactor>
+      </Host>
+    </Hosts>
+    <Resources>
+      <bt:Images>
+        <bt:Image id="Icon.16x16" DefaultValue="https://exceluat.blob.core.windows.net/assets/icon-16.png"/>
+        <bt:Image id="Icon.32x32" DefaultValue="https://exceluat.blob.core.windows.net/assets/icon-32.png"/>
+        <bt:Image id="Icon.80x80" DefaultValue="https://exceluat.blob.core.windows.net/assets/icon-80.png"/>
+      </bt:Images>
+      <bt:Urls>
+        <bt:Url id="Functions.Script.Url" DefaultValue="https://exceluat.blob.core.windows.net/functions.js" />
+        <bt:Url id="Functions.Metadata.Url" DefaultValue="https://exceluat.blob.core.windows.net/functions.json" />
+        <bt:Url id="GetStarted.LearnMoreUrl" DefaultValue="https://go.microsoft.com/fwlink/?LinkId=276812"/>
+        <bt:Url id="Commands.Url" DefaultValue="https://exceluat.blob.core.windows.net/commands.html"/>
+        <bt:Url id="Taskpane.Url" DefaultValue="https://exceluat.blob.core.windows.net/taskpane.html"/>
+      </bt:Urls>
+      <bt:ShortStrings>
+        <bt:String id="Functions.Namespace" DefaultValue="BENZ" />
+        <bt:String id="GetStarted.Title" DefaultValue="Get started with [Benz] Sales Measures System add-in!"/>
+        <bt:String id="CommandsGroup.Label" DefaultValue="Benz local"/>
+        <bt:String id="TaskpaneButton.Label" DefaultValue="Benz"/>
+      </bt:ShortStrings>
+      <bt:LongStrings>
+        <bt:String id="GetStarted.Description" DefaultValue="[Benz] Sales Measures System add-in loaded succesfully. Go to the HOME tab and click the 'Benz' button to get started."/>
+        <bt:String id="TaskpaneButton.Tooltip" DefaultValue="[Benz] Sales Measures System"/>
+      </bt:LongStrings>
+    </Resources>
+    <WebApplicationInfo>
+      <Id>589a390c-39e0-4726-ad2f-c8a3bfc0e676</Id>
+      <Resource>api://exceluat.blob.core.windows.net/589a390c-39e0-4726-ad2f-c8a3bfc0e676</Resource>
+      <Scopes>
+        <Scope>User.Read</Scope>
+        <Scope>profile</Scope>
+        <Scope>openid</Scope>
+        <Scope>user_impersonation</Scope>
+      </Scopes>
+    </WebApplicationInfo>
+  </VersionOverrides>
+</OfficeApp>

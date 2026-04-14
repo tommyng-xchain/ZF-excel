@@ -1,0 +1,16 @@
+{
+    "passVaildation":[
+        {
+            "mode": "MIGRATION",
+            "moduleName":"sm",
+            "actionKey":["action01", "action02"],
+            "LogicalName": ["avc","ab"]
+        },
+        {
+            "mode": "MIGRATION",
+            "moduleName":"claim",
+            "actionKey":["action01", "action02"],
+            "LogicalName": ["avc","ab"]
+        }
+    ]
+}

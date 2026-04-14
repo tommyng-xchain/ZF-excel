@@ -1,0 +1,259 @@
+"use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.batchOperation = exports.unboundFunction = exports.boundFunction = exports.unboundAction = exports.boundAction = exports.disassociate = exports.associate = exports.deleteProperty = exports.deleteRecord = exports.updateProperty = exports.updateWithReturnData = exports.update = exports.createWithReturnData = exports.create = exports.retrieveMultipleNextPage = exports.retrieveMultiple = exports.retrieve = void 0;
+const webApi = __importStar(require("./webapi"));
+function submitRequest(requestConfig, callback) {
+    const req = new XMLHttpRequest();
+    console.log("submitRequest: "+requestConfig.method+"; url:" +  `${requestConfig.apiConfig.url}/`+ encodeURI(`${requestConfig.queryString}`));
+    req.open(requestConfig.method, `${requestConfig.apiConfig.url}/`+ encodeURI(`${requestConfig.queryString}`), true);
+    const headers = webApi.getHeaders(requestConfig);
+    //console.log("submitRequest headers: "+ JSON.stringify(headers));
+
+    for (const header in headers) {
+        if(!header.startsWith('OData')){
+            req.setRequestHeader(header, headers[header]);
+        }
+    }
+    req.onreadystatechange = () => {
+        if (req.readyState === 4 /* complete */) {
+            req.onreadystatechange = null;
+            // console.log("submitRequest response: " + JSON.stringify(req.response));
+            if (req.status >= 200 && req.status < 300) {
+                callback({ error: false, response: req.response, headers: req.getAllResponseHeaders() });
+            }
+            else {
+                callback({ error: true, response: req.response, headers: req.getAllResponseHeaders() });
+            }
+        }
+    };
+    if (requestConfig.body != null) {
+        req.send(requestConfig.body);
+    }
+    else {
+        req.send();
+    }
+}
+/**
+ * Retrieve a record from CRM
+ * @param apiConfig WebApiConfig object
+ * @param entityType Type of entity to retrieve
+ * @param id Id of record to retrieve
+ * @param queryString OData query string parameters
+ * @param queryOptions Various query options for the query
+ */
+function retrieve(apiConfig, entitySet, id, queryString, queryOptions) {
+    return webApi.retrieve(apiConfig, entitySet, id, submitRequest, queryString, queryOptions);
+}
+exports.retrieve = retrieve;
+/**
+ * Retrieve multiple records from CRM
+ * @param apiConfig WebApiConfig object
+ * @param entitySet Type of entity to retrieve
+ * @param queryString OData query string parameters
+ * @param queryOptions Various query options for the query
+ */
+function retrieveMultiple(apiConfig, entitySet, queryString, queryOptions) {
+    return webApi.retrieveMultiple(apiConfig, entitySet, submitRequest, queryString, queryOptions);
+}
+exports.retrieveMultiple = retrieveMultiple;
+/**
+ * Retrieve next page from a retrieveMultiple request
+ * @param apiConfig WebApiConfig object
+ * @param url Query from the @odata.nextlink property of a retrieveMultiple
+ * @param queryOptions Various query options for the query
+ */
+function retrieveMultipleNextPage(apiConfig, url, queryOptions) {
+    return webApi.retrieveMultipleNextPage(apiConfig, url, submitRequest, queryOptions);
+}
+exports.retrieveMultipleNextPage = retrieveMultipleNextPage;
+/**
+ * Create a record in CRM
+ * @param apiConfig WebApiConfig object
+ * @param entitySet Type of entity to create
+ * @param entity Entity to create
+ * @param queryOptions Various query options for the query
+ */
+function create(apiConfig, entitySet, entity, queryOptions) {
+    return webApi.create(apiConfig, entitySet, entity, submitRequest, queryOptions);
+}
+exports.create = create;
+/**
+ * Create a record in CRM and return data
+ * @param apiConfig WebApiConfig object
+ * @param entitySet Type of entity to create
+ * @param entity Entity to create
+ * @param select Select odata query parameter
+ * @param queryOptions Various query options for the query
+ */
+function createWithReturnData(apiConfig, entitySet, entity, select, queryOptions) {
+    return webApi.createWithReturnData(apiConfig, entitySet, entity, select, submitRequest, queryOptions);
+}
+exports.createWithReturnData = createWithReturnData;
+/**
+ * Update a record in CRM
+ * @param apiConfig WebApiConfig object
+ * @param entitySet Type of entity to update
+ * @param id Id of record to update
+ * @param entity Entity fields to update
+ * @param queryOptions Various query options for the query
+ */
+function update(apiConfig, entitySet, id, entity, queryOptions) {
+    return webApi.update(apiConfig, entitySet, id, entity, submitRequest, queryOptions);
+}
+exports.update = update;
+/**
+ * Create a record in CRM and return data
+ * @param apiConfig WebApiConfig object
+ * @param entitySet Type of entity to create
+ * @param id Id of record to update
+ * @param entity Entity fields to update
+ * @param select Select odata query parameter
+ * @param queryOptions Various query options for the query
+ */
+function updateWithReturnData(apiConfig, entitySet, id, entity, select, queryOptions) {
+    return webApi.updateWithReturnData(apiConfig, entitySet, id, entity, select, submitRequest, queryOptions);
+}
+exports.updateWithReturnData = updateWithReturnData;
+/**
+ * Update a single property of a record in CRM
+ * @param apiConfig WebApiConfig object
+ * @param entitySet Type of entity to update
+ * @param id Id of record to update
+ * @param attribute Attribute to update
+ * @param queryOptions Various query options for the query
+ */
+function updateProperty(apiConfig, entitySet, id, attribute, value, queryOptions) {
+    return webApi.updateProperty(apiConfig, entitySet, id, attribute, value, submitRequest, queryOptions);
+}
+exports.updateProperty = updateProperty;
+/**
+ * Delete a record from CRM
+ * @param apiConfig WebApiConfig object
+ * @param entitySet Type of entity to delete
+ * @param id Id of record to delete
+ */
+function deleteRecord(apiConfig, entitySet, id) {
+    return webApi.deleteRecord(apiConfig, entitySet, id, submitRequest);
+}
+exports.deleteRecord = deleteRecord;
+/**
+ * Delete a property from a record in CRM. Non navigation properties only
+ * @param apiConfig WebApiConfig object
+ * @param entitySet Type of entity to update
+ * @param id Id of record to update
+ * @param attribute Attribute to delete
+ */
+function deleteProperty(apiConfig, entitySet, id, attribute) {
+    return webApi.deleteProperty(apiConfig, entitySet, id, attribute, submitRequest);
+}
+exports.deleteProperty = deleteProperty;
+/**
+ * Associate two records
+ * @param apiConfig WebApiConfig object
+ * @param entitySet Type of entity for primary record
+ * @param id Id of primary record
+ * @param relationship Schema name of relationship
+ * @param relatedEntitySet Type of entity for secondary record
+ * @param relatedEntityId Id of secondary record
+ * @param queryOptions Various query options for the query
+ */
+function associate(apiConfig, entitySet, id, relationship, relatedEntitySet, relatedEntityId, queryOptions) {
+    return webApi.associate(apiConfig, entitySet, id, relationship, relatedEntitySet, relatedEntityId, submitRequest, queryOptions);
+}
+exports.associate = associate;
+/**
+ * Disassociate two records
+ * @param apiConfig WebApiConfig obje
+ * @param entitySet Type of entity for primary record
+ * @param id  Id of primary record
+ * @param property Schema name of property or relationship
+ * @param relatedEntityId Id of secondary record. Only needed for collection-valued navigation properties
+ */
+function disassociate(apiConfig, entitySet, id, property, relatedEntityId) {
+    return webApi.disassociate(apiConfig, entitySet, id, property, submitRequest, relatedEntityId);
+}
+exports.disassociate = disassociate;
+/**
+ * Execute a default or custom bound action in CRM
+ * @param apiConfig WebApiConfig object
+ * @param entitySet Type of entity to run the action against
+ * @param id Id of record to run the action against
+ * @param actionName Name of the action to run
+ * @param inputs Any inputs required by the action
+ * @param queryOptions Various query options for the query
+ */
+function boundAction(apiConfig, entitySet, id, actionName, inputs, queryOptions) {
+    return webApi.boundAction(apiConfig, entitySet, id, actionName, submitRequest, inputs, queryOptions);
+}
+exports.boundAction = boundAction;
+/**
+ * Execute a default or custom unbound action in CRM
+ * @param apiConfig WebApiConfig object
+ * @param actionName Name of the action to run
+ * @param inputs Any inputs required by the action
+ * @param queryOptions Various query options for the query
+ */
+function unboundAction(apiConfig, actionName, inputs, queryOptions) {
+    return webApi.unboundAction(apiConfig, actionName, submitRequest, inputs, queryOptions);
+}
+exports.unboundAction = unboundAction;
+/**
+ * Execute a default or custom bound action in CRM
+ * @param apiConfig WebApiConfig object
+ * @param entitySet Type of entity to run the action against
+ * @param id Id of record to run the action against
+ * @param functionName Name of the action to run
+ * @param inputs Any inputs required by the action
+ * @param queryOptions Various query options for the query
+ */
+function boundFunction(apiConfig, entitySet, id, functionName, inputs, queryOptions) {
+    return webApi.boundFunction(apiConfig, entitySet, id, functionName, submitRequest, inputs, queryOptions);
+}
+exports.boundFunction = boundFunction;
+/**
+ * Execute an unbound function in CRM
+ * @param apiConfig WebApiConfig object
+ * @param functionName Name of the action to run
+ * @param inputs Any inputs required by the action
+ * @param queryOptions Various query options for the query
+ */
+function unboundFunction(apiConfig, functionName, inputs, queryOptions) {
+    return webApi.unboundFunction(apiConfig, functionName, submitRequest, inputs, queryOptions);
+}
+exports.unboundFunction = unboundFunction;
+/**
+ * Execute a batch operation in CRM
+ * @param apiConfig WebApiConfig object
+ * @param batchId Unique batch id for the operation
+ * @param changeSetId Unique change set id for any changesets in the operation
+ * @param changeSets Array of change sets (create or update) for the operation
+ * @param batchGets Array of get requests for the operation
+ * @param queryOptions Various query options for the query
+ */
+function batchOperation(apiConfig, batchId, changeSetId, changeSets, batchGets, queryOptions) {
+    return webApi.batchOperation(apiConfig, batchId, changeSetId, changeSets, batchGets, submitRequest, queryOptions);
+}
+exports.batchOperation = batchOperation;

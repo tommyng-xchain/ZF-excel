@@ -1,0 +1,26 @@
+# Node.js
+node_modules/
+
+# VSCode
+.vscode/
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# yarn v2
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+.pnp.*
+
+# Primno
+dist/
+build/
+.nyc_output

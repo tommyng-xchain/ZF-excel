@@ -1,0 +1,2607 @@
+{
+    "module": "SM-ZF_MK",
+    "StartButtonLabel": "SM-ZFMK",
+    "memoid_set": [
+        "benz_memotype",
+        "benz_memonoyear",
+        "benz_memonomonth",
+        "M",
+        "benz_memonoserialno"
+    ],
+    "moduleTypeFullName": "Sales Measure",
+    "Table_Main_SchemaName": "benz_SalesLetterMainForm",
+    "action": null,
+    "Table_Main_LogicalName": "benz_prototypesalesmeasuremainform",
+    "Table_Main_id_LogicalName": "benz_name",
+    "Table_Item_SchemaName": "benz_PrototypeSalesMeasure",
+    "Table_Item_LogicalName": "benz_prototypesalesmeasure",
+    "Table_item_main_relationship_LogicalName": "benz_PrototypeSalesMeasureMainForm",
+    "memotype_LogicalName": "benz_Memotype",
+    "Table_linenumber_LogicalName": "benz_id",
+    "permissions": {
+        "start_button":[
+            "Benz_MBHKSales",
+            "Benz_MBHKControlling",
+            "Benz_ZFMK"
+        ],
+        "create_button": [
+            "Benz_MBHKSales",
+            "Benz_MBHKControlling",
+            "Benz_ZFMK"
+        ],
+        "Update_button": [
+            "Benz_MBHKSales",
+            "Benz_MBHKControlling",
+            "Benz_ZFMK"
+        ],
+        "GetData_button": [
+            "Benz_MBHKSales",
+            "Benz_MBHKControlling",
+            "Benz_ZFMK"
+        ],
+        "ImportData_button": [
+            "Benz_MBHKSales",
+            "Benz_MBHKControlling"
+        ]
+    },
+    "specialcase": {
+        "available": false,
+        "target": ""
+    },
+    "relationship": [
+        {
+            "id": "benz_memotype",
+            "to_LogicalName": "benz_memotype",
+            "from_LogicalName": "benz_prototypesalesmeasuremainform",
+            "from_FieldLogicalName": "benz_memotype",
+            "relationship_LogicalName": "benz_prototypesalesmeasuremainform_Memotype_benz_memotype"
+        },
+        {
+            "id": "benz_supporttype",
+            "to_LogicalName": "benz_supporttype",
+            "from_LogicalName": "benz_prototypesalesmeasure",
+            "from_FieldLogicalName": "benz_prototypesupporttype",
+            "relationship_LogicalName": "benz_prototypesalesmeasure_PrototypeSupportTyp"
+        },
+        {
+            "id": "systemuser",
+            "to_LogicalName": "systemuser",
+            "from_LogicalName": "benz_prototypesalesmeasuremainform",
+            "from_FieldLogicalName": "benz_nameofpreparer",
+            "relationship_LogicalName": "benz_prototypesalesmeasuremainform_NameofPrepa",
+            "querys": [
+                {
+                    "getvalueregex": "[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,24}",
+                    "EntityLogicalName": "systemusers",
+                    "queryString": "$select=fullname,systemuserid,internalemailaddress&$filter=internalemailaddress eq '{valueAfters}'",
+                    "queryOptions": ""
+                }
+            ]
+        },
+        {
+            "id": "main",
+            "to_LogicalName": "benz_prototypesalesmeasuremainform",
+            "from_LogicalName": "benz_prototypesalesmeasure",
+            "relationship_LogicalName": "benz_PrototypeSalesMeasureMainForm"
+        },
+        {
+            "id": "model",
+            "to_LogicalName": "benz_prototypemodeldesignation",
+            "from_LogicalName": "benz_prototypesalesmeasure",
+            "from_FieldLogicalName": "benz_prototypemodeldesignation",
+            "relationship_LogicalName": "benz_m2m_SalesMeasure_CarModel_result",
+            "table_columns_LogicalName": "LogicalName",
+            "querys": [
+                {
+                    "id": "Inclusion",
+                    "add": true,
+                    "type": "local",
+                    "LogicalName": "benz_PrototypeModelDesignation",
+                    "EntityLogicalName": "benz_prototypemodeldesignation",
+                    "queryString": "$select=benz_name&$filter=Microsoft.Dynamics.CRM.In(PropertyName=@p1,PropertyValues=@p2)&@p1='benz_name'&@p2=[{valueAfters}]",
+                    "queryOptions": "",
+                    "followFieldLogicalName": "benz_modeltext"
+                },
+                {
+                    "id": "InclusionGroup",
+                    "type": "webapi",
+                    "add": true,
+                    "LogicalName": "benz_PrototypeModelDesignation",
+                    "EntityLogicalName": "benz_prototypemodelgroup",
+                    "queryString": "$select=benz_name&$filter=Microsoft.Dynamics.CRM.In(PropertyName=@p1,PropertyValues=@p2)&@p1='benz_name'&@p2=[{valueAfters}]",
+                    "queryOptions": "",
+                    "expand": {
+                        "EntityLogicalName": "benz_ModelDesignation_ModelGroupM2M",
+                        "queryString": "$select=benz_name",
+                        "queryOptions": ""
+                    },
+                    "followFieldLogicalName": "benz_modeltext"
+                },
+                {
+                    "id": "Exclusion",
+                    "add": false,
+                    "type": "local",
+                    "EntityLogicalName": "benz_prototypemodeldesignation",
+                    "queryString": "$select=benz_name&$filter=Microsoft.Dynamics.CRM.In(PropertyName=@p1,PropertyValues=@p2)&@p1='benz_name'&@p2=[{valueAfters}]",
+                    "LogicalName": "benz_exclusionmodelremark",
+                    "followFieldLogicalName": "benz_exclusionmodelremark"
+                },
+                {
+                    "id": "ExclusionGroup",
+                    "type": "webapi",
+                    "add": false,
+                    "LogicalName": "benz_exclusionmodelremark",
+                    "EntityLogicalName": "benz_prototypemodelgroup",
+                    "queryString": "$select=benz_name&$filter=Microsoft.Dynamics.CRM.In(PropertyName=@p1,PropertyValues=@p2)&@p1='benz_name'&@p2=[{valueAfters}]",
+                    "queryOptions": "",
+                    "expand": {
+                        "EntityLogicalName": "benz_ModelDesignation_ModelGroupM2M",
+                        "queryString": "$select=benz_name",
+                        "queryOptions": ""
+                    },
+                    "followFieldLogicalName": "benz_exclusionmodelremark"
+                }
+            ]
+        },
+        {
+            "id": "modelgroup",
+            "to_LogicalName": "benz_prototypemodelgroup",
+            "from_LogicalName": "benz_prototypesalesmeasure",
+            "relationship_LogicalName": "benz_m2m_SalesMeasure_ModelGroup",
+            "table_columns_LogicalName": "LogicalName"
+        },
+        {
+            "id": "exmodelgroup",
+            "to_LogicalName": "benz_prototypemodelgroup",
+            "from_LogicalName": "benz_prototypesalesmeasure",
+            "relationship_LogicalName": "benz_m2m_SalesMeasure_ModelGroup_exclued",
+            "table_columns_LogicalName": "LogicalName"
+        },
+        {
+            "id": "exmodel",
+            "to_LogicalName": "benz_prototypemodeldesignation",
+            "from_LogicalName": "benz_prototypesalesmeasure",
+            "relationship_LogicalName": "benz_PrototypeSalesMeasure_benz_M2MCarModelEx",
+            "table_columns_LogicalName": "LogicalName"
+        }
+    ],
+    "layout": [
+        {
+            "module": "sm",
+            "type": "highlight",
+            "id": "Preparer",
+            "action": [
+                "create",
+                "update"
+            ],
+            "cell": {
+                "format": {
+                    "fill": {
+                        "color": "#4472C4"
+                    }
+                },
+                "address": "1:1"
+            }
+        },
+        {
+            "model": "sm",
+            "type": "label",
+            "id": "Preparer",
+            "action": [
+                "create",
+                "update"
+            ],
+            "cell": {
+                "format": {
+                    "fill": {
+                        "color": "#4472C4"
+                    },
+                    "font": {
+                        "bold": true,
+                        "name": "Arial",
+                        "size": 18,
+                        "color": "#ffffff"
+                    }
+                },
+                "values": "Sales Measure Form of Zung Fu Motor (Macau) Limited",
+                "address": "B1"
+            }
+        },
+        {
+            "module": "sm",
+            "type": "label",
+            "id": "Preparer",
+            "action": [
+                "create",
+                "update"
+            ],
+            "cell": {
+                "format": {
+                    "fill": {
+                        "color": ""
+                    },
+                    "font": {
+                        "name": "",
+                        "size": 11,
+                        "color": ""
+                    }
+                },
+                "values": "Preparer",
+                "address": "C2"
+            }
+        },
+        {
+            "module": "sm",
+            "type": "main-form-field",
+            "id": "Preparer",
+            "EntityLogicalName": "benz_prototypesalesmeasuremainform",
+            "LogicalName": "benz_nameofpreparer",
+            "SchemaName": "benz_NameofPreparer",
+            "ValueLogicalName": "_benz_nameofpreparer_value",
+            "LookupEntityLogicalName": "systemusers",
+            "AttributeType": "Lookup",
+            "LookupAllowUsingExist": true,
+            "mandatory": true,
+            "enable": false,
+            "action": [
+                "create",
+                "update"
+            ],
+            "Label": "Preparer",
+            "rowIndex": 1,
+            "index": 2,
+            "cell": {
+                "format": {
+                    "fill": {
+                        "color": "#C0E6F5"
+                    },
+                    "font": {
+                        "name": "",
+                        "size": 11,
+                        "color": ""
+                    },
+                    "inputtype": "text"
+                },
+                "values": "",
+                "getvalueregex": "[\\w\\-\\.]+@([\\w-]+\\.)+[\\w-]+",
+                "address": "D2",
+                "WorksheetSingleClicked": [
+                    {
+                        "type": "peoplepicker"
+                    }
+                ],
+                "TableChanged": [
+                    {
+                        "type": "tabledata_lookupsystemuser",
+                        "FieldLogicalNames": [
+                            "fullname",
+                            "internalemailaddress"
+                        ],
+                        "value": "{fullname} <{internalemailaddress}>",
+                        "EntityLogicalName": "systemusers",
+                        "queryString": "$select=fullname,systemuserid,internalemailaddress&$filter=startswith(fullname,'{valueAfters}')",
+                        "queryOptions": ""
+                    }
+                ]
+            }
+        },
+        {
+            "module": "sm",
+            "type": "label",
+            "id": "DepartmentOfPreparer",
+            "action": [
+                "create",
+                "update"
+            ],
+            "cell": {
+                "format": {
+                    "fill": {
+                        "color": ""
+                    },
+                    "font": {
+                        "name": "",
+                        "size": 11,
+                        "color": ""
+                    }
+                },
+                "values": "Department of Preparer",
+                "address": "C3"
+            }
+        },
+        {
+            "module": "sm",
+            "type": "main-form-field",
+            "id": "DepartmentOfPreparer",
+            "EntityLogicalName": "benz_prototypesalesmeasuremainform",
+            "LogicalName": "benz_departmentofpreparer",
+            "mandatory": true,
+            "AttributeType": "Choice",
+            "action": [
+                "create",
+                "update"
+            ],
+            "cell": {
+                "format": {
+                    "fill": {
+                        "color": "#C0E6F5"
+                    },
+                    "font": {
+                        "name": "",
+                        "size": 11,
+                        "color": ""
+                    },
+                    "inputtype": "text"
+                },
+                "values": "",
+                "dataValidation": {
+                    "target": "benz_departmentofpreparer",
+                    "rule": {
+                        "list": {
+                            "inCellDropDown": true,
+                            "source": ""
+                        }
+                    }
+                },
+                "address": "D3"
+            }
+        },
+        {
+            "module": "sm",
+            "type": "label",
+            "id": "BusinessUnitOfPreparer",
+            "action": [
+                "create",
+                "update"
+            ],
+            "cell": {
+                "format": {
+                    "fill": {
+                        "color": ""
+                    },
+                    "font": {
+                        "name": "",
+                        "size": 11,
+                        "color": ""
+                    }
+                },
+                "values": "Business unit of Preparer",
+                "address": "C4"
+            }
+        },
+        {
+            "module": "sm",
+            "type": "main-form-field",
+            "id": "BusinessUnitOfPreparer",
+            "EntityLogicalName": "benz_prototypesalesmeasuremainform",
+            "LogicalName": "benz_businessunitofpreparer",
+            "mandatory": true,
+            "AttributeType": "Choice",
+            "action": [
+                "create",
+                "update"
+            ],
+            "cell": {
+                "format": {
+                    "fill": {
+                        "color": "#C0E6F5"
+                    },
+                    "font": {
+                        "name": "",
+                        "size": 11,
+                        "color": ""
+                    },
+                    "inputtype": "text"
+                },
+                "values": "",
+                "dataValidation": {
+                    "target": "benz_businessunitofpreparer",
+                    "rule": {
+                        "list": {
+                            "inCellDropDown": true,
+                            "source": ""
+                        }
+                    }
+                },
+                "address": "D4"
+            }
+        },
+        {
+            "module": "sm",
+            "type": "label",
+            "id": "DateOfSubmission",
+            "action": [
+                "create",
+                "update"
+            ],
+            "cell": {
+                "format": {
+                    "fill": {
+                        "color": ""
+                    },
+                    "font": {
+                        "name": "",
+                        "size": 11,
+                        "color": ""
+                    }
+                },
+                "values": "Date of Submission",
+                "address": "C5"
+            }
+        },
+        {
+            "module": "sm",
+            "type": "main-form-field-gen",
+            "id": "DateOfSubmission",
+            "EntityLogicalName": "benz_prototypesalesmeasuremainform",
+            "LogicalName": "benz_lastupdatedate",
+            "action": [
+                "create",
+                "update"
+            ],
+            "cell": {
+                "format": {
+                    "fill": {
+                        "color": "#FFFFCC"
+                    },
+                    "font": {
+                        "name": "",
+                        "size": 11,
+                        "color": ""
+                    },
+                    "inputtype": "text"
+                },
+                "values": "",
+                "address": "D5"
+            }
+        },
+        {
+            "module": "sm",
+            "type": "label",
+            "id": "LastUpdate Date",
+            "action": [
+                "create",
+                "update"
+            ],
+            "cell": {
+                "format": {
+                    "fill": {
+                        "color": ""
+                    },
+                    "font": {
+                        "name": "",
+                        "size": 11,
+                        "color": ""
+                    }
+                },
+                "values": "Last update date",
+                "address": "C6"
+            }
+        },
+        {
+            "module": "sm",
+            "type": "main-form-field-gen",
+            "id": "LastUpdate Date",
+            "EntityLogicalName": "benz_prototypesalesmeasuremainform",
+            "LogicalName": "benz_lastupdatedate",
+            "action": [
+                "create",
+                "update"
+            ],
+            "cell": {
+                "format": {
+                    "fill": {
+                        "color": "#FFFFCC"
+                    },
+                    "font": {
+                        "name": "",
+                        "size": 11,
+                        "color": ""
+                    },
+                    "inputtype": "text"
+                },
+                "values": "",
+                "address": "D6"
+            }
+        },
+        {
+            "module": "sm",
+            "type": "main-form-field",
+            "id": "MemoType",
+            "EntityLogicalName": "benz_prototypesalesmeasuremainform",
+            "LogicalName": "benz_memotype",
+            "SchemaName": "benz_Memotype",
+            "AttributeType": "Lookup",
+            "LookupAllowUsingExist": true,
+            "LookupInoutType": "choice",
+            "mandatory": true,
+            "action": [
+                "create"
+            ],
+            "Label": "Memo Type",
+            "cell": {
+                "format": {
+                    "fill": {
+                        "color": "#C0E6F5"
+                    },
+                    "font": {
+                        "name": "",
+                        "size": 11,
+                        "color": ""
+                    },
+                    "datatype": "dropdown"
+                },
+                "values": "",
+                "dataValidation": {
+                    "target": "benz_memotype_zfhk",
+                    "rule": {
+                        "list": {
+                            "inCellDropDown": true,
+                            "source": ""
+                        }
+                    }
+                },
+                "address": "D9"
+            }
+        },
+        {
+            "module": "sm",
+            "type": "main-form-field",
+            "id": "Memono",
+            "EntityLogicalName": "benz_prototypesalesmeasuremainform",
+            "LogicalName": "benz_name",
+            "AttributeType": "String",
+            "mandatory": true,
+            "action": [
+                "update"
+            ],
+            "MemoNameGen": true,
+            "cell": {
+                "format": {
+                    "fill": {
+                        "color": "#FFFFCC"
+                    },
+                    "font": {
+                        "name": "",
+                        "size": 11,
+                        "color": ""
+                    },
+                    "protection": {
+                        "locked": true
+                    }
+                },
+                "inputtype": "text",
+                "values": "",
+                "address": "D10"
+            }
+        },
+        {
+            "module": "sm",
+            "type": "label",
+            "id": "MemoIDType_tooltips",
+            "action": [
+                "create"
+            ],
+            "cell": {
+                "format": {
+                    "fill": {
+                        "color": ""
+                    },
+                    "font": {
+                        "name": "",
+                        "size": 11,
+                        "color": "#808080"
+                    }
+                },
+                "values": "(Type)",
+                "address": "D8"
+            }
+        },
+        {
+            "module": "sm",
+            "type": "label",
+            "id": "MemoIDyear_tooltips",
+            "action": [
+                "create"
+            ],
+            "cell": {
+                "format": {
+                    "fill": {
+                        "color": ""
+                    },
+                    "font": {
+                        "name": "",
+                        "size": 11,
+                        "color": "#808080"
+                    }
+                },
+                "values": "(Year)",
+                "address": "E8"
+            }
+        },
+        {
+            "module": "sm",
+            "type": "label",
+            "id": "MemoIDMonth_tooltips",
+            "action": [
+                "create"
+            ],
+            "cell": {
+                "format": {
+                    "fill": {
+                        "color": ""
+                    },
+                    "font": {
+                        "name": "",
+                        "size": 11,
+                        "color": "#808080"
+                    }
+                },
+                "values": "(Month)",
+                "address": "F8"
+            }
+        },
+        {
+            "module": "sm",
+            "type": "label",
+            "id": "MemoIDSerialno_tooltips",
+            "action": [
+                "create"
+            ],
+            "cell": {
+                "format": {
+                    "fill": {
+                        "color": ""
+                    },
+                    "font": {
+                        "name": "",
+                        "size": 11,
+                        "color": "#808080"
+                    }
+                },
+                "values": "(Serial no.)",
+                "address": "G8"
+            }
+        },
+        {
+            "module": "sm",
+            "type": "label",
+            "id": "MemoID",
+            "action": [
+                "update"
+            ],
+            "cell": {
+                "format": {
+                    "fill": {
+                        "color": ""
+                    },
+                    "font": {
+                        "name": "",
+                        "size": 11,
+                        "color": ""
+                    },
+                    "protection": {
+                        "locked": true
+                    }
+                },
+                "values": "Memo ID",
+                "address": "C10"
+            }
+        },
+        {
+            "module": "sm",
+            "type": "main-form-field",
+            "id": "MemoID_year",
+            "EntityLogicalName": "benz_prototypesalesmeasuremainform",
+            "LogicalName": "benz_memonoyear",
+            "AttributeType": "String",
+            "mandatory": true,
+            "action": [
+                "create"
+            ],
+            "Label": "Memo Year",
+            "cell": {
+                "numberFormat": "@",
+                "format": {
+                    "fill": {
+                        "color": "#C0E6F5"
+                    },
+                    "font": {
+                        "name": "",
+                        "size": 11,
+                        "color": ""
+                    }
+                },
+                "inputtype": "text",
+                "address": "E9"
+            }
+        },
+        {
+            "module": "sm",
+            "type": "main-form-field",
+            "id": "MemoID_month",
+            "EntityLogicalName": "benz_prototypesalesmeasuremainform",
+            "LogicalName": "benz_memonomonth",
+            "AttributeType": "Choice",
+            "mandatory": true,
+            "action": [
+                "create"
+            ],
+            "Label": "Memo Month",
+            "cell": {
+                "numberFormat": "@",
+                "format": {
+                    "fill": {
+                        "color": "#C0E6F5"
+                    },
+                    "font": {
+                        "name": "",
+                        "size": 11,
+                        "color": ""
+                    }
+                },
+                "inputtype": "text",
+                "dataValidation": {
+                    "target": "Month",
+                    "rule": {
+                        "list": {
+                            "inCellDropDown": true,
+                            "source": ""
+                        }
+                    }
+                },
+                "pad": 2,
+                "address": "F9"
+            }
+        },
+        {
+            "module": "sm",
+            "type": "main-form-field",
+            "id": "MemoID_serialno",
+            "EntityLogicalName": "benz_prototypesalesmeasuremainform",
+            "LogicalName": "benz_memonoserialno",
+            "Label": "memo serial no",
+            "AttributeType": "String",
+            "mandatory": true,
+            "action": [
+                "create"
+            ],
+            "readonly": true,
+            "cell": {
+                "format": {
+                    "fill": {
+                        "color": "#FFFFCC"
+                    },
+                    "font": {
+                        "name": "",
+                        "size": 11,
+                        "color": ""
+                    },
+                    "protection": {
+                        "locked": true
+                    }
+                },
+                "inputtype": "text",
+                "address": "G9",
+                "querys": [
+                    {
+                        "type": "webapi",
+                        "entitySet": "benz_prototypesalesmeasuremainforms",
+                        "queryString": "?$select=benz_prototypesalesmeasuremainformid&$filter=contains(benz_memonoyear,'{benz_memonoyear}') and contains(benz_memonomonth,'{benz_memonomonth}') and _benz_memotype_value eq '{benz_memotype}'&$count=true",
+                        "queryOptions": "",
+                        "getApiValue": "@odata.count",
+                        "settoLogicalName": "benz_memonoserialno"
+                    },
+                    {
+                        "type": "setvalue",
+                        "settoLogicalName": "benz_name",
+                        "valueset": [
+                            "benz_memotype",
+                            "benz_memonoyear",
+                            "benz_memonomonth",
+                            "M",
+                            "benz_memonoserialno"
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "module": "sm",
+            "type": "label",
+            "id": "MemoID",
+            "action": [
+                "create"
+            ],
+            "readonly": true,
+            "cell": {
+                "format": {
+                    "fill": {
+                        "color": ""
+                    },
+                    "font": {
+                        "name": "",
+                        "size": 11,
+                        "color": ""
+                    },
+                    "protection": {
+                        "locked": true
+                    }
+                },
+                "values": "Memo Number",
+                "address": "C9"
+            }
+        },
+        {
+            "module": "sm",
+            "type": "label",
+            "id": "MemoTitle",
+            "action": [
+                "create",
+                "update"
+            ],
+            "cell": {
+                "format": {
+                    "fill": {},
+                    "font": {}
+                },
+                "values": "Title",
+                "address": "C11"
+            }
+        },
+        {
+            "module": "sm",
+            "type": "main-form-field",
+            "EntityLogicalName": "benz_prototypesalesmeasuremainform",
+            "LogicalName": "benz_memotitle",
+            "AttributeType": "String",
+            "id": "MemoTitle",
+            "mandatory": true,
+            "action": [
+                "create",
+                "update"
+            ],
+            "cell": {
+                "format": {
+                    "fill": {
+                        "color": "#C0E6F5"
+                    },
+                    "font": {
+                        "name": "",
+                        "size": 11,
+                        "color": ""
+                    },
+                    "inputtype": "text"
+                },
+                "address": "D11"
+            }
+        },
+        {
+            "module": "sm",
+            "type": "label",
+            "id": "RequireCEOApproval",
+            "action": [
+                "create",
+                "update"
+            ],
+            "cell": {
+                "format": {
+                    "fill": {},
+                    "font": {}
+                },
+                "values": "Require CEO Approval?",
+                "address": "C13"
+            }
+        },
+        {
+            "module": "sm",
+            "type": "main-form-field",
+            "EntityLogicalName": "benz_prototypesalesmeasuremainform",
+            "LogicalName": "crc19_requireceoapproval",
+            "id": "RequireCEOApproval",
+            "AttributeType": "Boolean",
+            "action": [
+                "create",
+                "update"
+            ],
+            "cell": {
+                "valuesMap": {
+                    "Yes": true,
+                    "No": false
+                },
+                "format": {
+                    "fill": {
+                        "color": "#C0E6F5"
+                    },
+                    "font": {
+                        "name": "",
+                        "size": 11,
+                        "color": ""
+                    }
+                },
+                "address": "D13",
+                "dataValidation": {
+                    "rule": {
+                        "list": {
+                            "inCellDropDown": true,
+                            "source": "No,Yes"
+                        }
+                    }
+                },
+                "values": "No"
+            }
+        },
+        {
+            "module": "sm",
+            "type": "main-form-field",
+            "EntityLogicalName": "benz_prototypesalesmeasuremainform",
+            "LogicalName": "benz_prototypesalesmeasuremainformid",
+            "AttributeType": "String",
+            "enable": true,
+            "specialcase": false,
+            "title": "id",
+            "Label": "id",
+            "mandatory": false,
+            "action": [
+            ],
+            "cell": {
+                "columnHidden": true,
+                "numberFormat": "@",
+                "format": {
+                    "protection": {
+                        "locked": true
+                    }
+                },
+                "values": "",
+                "address": "A9"
+            }
+        }
+    ],
+    "table": {
+        "name": "table_SM_ZFMK",
+        "address": "A18",
+        "rowIndex": 17,
+        "columnIndex": 0,
+        "hasHeaders": true,
+        "columns": [
+            {
+                "index": 0,
+                "EntityLogicalName": "benz_prototypesalesmeasure",
+                "LogicalName": "benz_prototypesalesmeasureid",
+                "AttributeType": "String",
+                "enable": true,
+                "specialcase": false,
+                "title": "id",
+                "Label": "id",
+                "mandatory": false,
+                "cell": {
+                    "numberFormat": "@",
+                    "format": {
+                        "protection": {
+                            "locked": true
+                        }
+                    },
+                    "values": ""
+                }
+            },
+            {
+                "index": 1,
+                "EntityLogicalName": "benz_prototypesalesmeasure",
+                "LogicalName": "benz_id",
+                "AttributeType": "Number",
+                "enable": true,
+                "specialcase": false,
+                "title": "Line item no #",
+                "Label": "Line item no #",
+                "mandatory": false,
+                "cell": {
+                    "numberFormat": "#",
+                    "format": {
+                        "columnWidth": 50,
+                        "verticalAlignment": "Center",
+                        "horizontalAlignment": "Center",
+                        "font": {},
+                        "protection": {
+                            "locked": true
+                        }
+                    },
+                    "dataValidation": {
+                        "rule": {
+                            "wholeNumber": {
+                                "operator": "GreaterThanOrEqualTo",
+                                "formula1": 0
+                            }
+                        }
+                    },
+                    "values": "=ROW(A1)",
+                    "TableChanged": [
+                        {
+                            "type": "tabledata_unique"
+                        }
+                    ]
+                }
+            },
+            {
+                "index": 2,
+                "EntityLogicalName": "benz_prototypesalesmeasure",
+                "LogicalName": "benz_modeltext",
+                "AttributeType": "String",
+                "Label": "Inclusion model(s) & group(s)*",
+                "values": "",
+                "mandatory": true,
+                "enable": true,
+                "specialcase": true,
+                "title": "Inclusion model(s) & group(s)",
+                "cell": {
+                    "numberFormat": "@",
+                    "format": {
+                        "verticalAlignment": "Center",
+                        "horizontalAlignment": "Center",
+                        "font": {},
+                        "protection": {
+                            "locked": false
+                        }
+                    },
+                    "values": "",
+                    "WorksheetSingleClicked": [
+                        {
+                            "type": "modelpicker",
+                            "table": [
+                                "benz_prototypemodeldesignation",
+                                "benz_prototypemodelgroup"
+                            ],
+                            "separator": ","
+                        }
+                    ],
+                    "TableChanged": [
+                        {
+                            "type": "tabledata_choicesdataisexist",
+                            "tablefield": [
+                                "benz_prototypemodeldesignation.benz_name",
+                                "benz_prototypemodelgroup.benz_name"
+                            ],
+                            "separator": ","
+                        },
+                        {
+                            "type": "tabledata_dependency",
+                            "tablefield": [
+                                "benz_prototypesalesmeasure.benz_exclusionmodelremark"
+                            ],
+                            "separator": ","
+                        },
+                        {
+                            "type": "tabledata_model",
+                            "table": [
+                                "benz_prototypemodeldesignation",
+                                "benz_prototypemodelgroup"
+                            ],
+                            "separator": ",",
+                            "querys": [
+                                {
+                                    "id": "Inclusion",
+                                    "add": true,
+                                    "type": "local",
+                                    "LogicalName": "benz_PrototypeModelDesignation",
+                                    "EntityLogicalName": "benz_prototypemodeldesignation",
+                                    "queryString": "$select=benz_name&$filter=Microsoft.Dynamics.CRM.In(PropertyName=@p1,PropertyValues=@p2)&@p1='benz_name'&@p2=[{valueAfters}]",
+                                    "queryOptions": ""
+                                },
+                                {
+                                    "id": "InclusionGroup",
+                                    "type": "webapi",
+                                    "add": true,
+                                    "LogicalName": "benz_PrototypeModelDesignation",
+                                    "EntityLogicalName": "benz_prototypemodelgroup",
+                                    "queryString": "$select=benz_name&$filter=Microsoft.Dynamics.CRM.In(PropertyName=@p1,PropertyValues=@p2)&@p1='benz_name'&@p2=[{valueAfters}]",
+                                    "queryOptions": "",
+                                    "expand": {
+                                        "EntityLogicalName": "benz_ModelDesignation_ModelGroupM2M",
+                                        "queryString": "$select=benz_name",
+                                        "queryOptions": ""
+                                    }
+                                },
+                                {
+                                    "id": "Exclusion",
+                                    "add": false,
+                                    "type": "local",
+                                    "EntityLogicalName": "benz_prototypemodeldesignation",
+                                    "queryString": "$select=benz_name&$filter=Microsoft.Dynamics.CRM.In(PropertyName=@p1,PropertyValues=@p2)&@p1='benz_name'&@p2=[{valueAfters}]",
+                                    "LogicalName": "benz_exclusionmodelremark"
+                                },
+                                {
+                                    "id": "ExclusionGroup",
+                                    "type": "webapi",
+                                    "add": false,
+                                    "LogicalName": "benz_exclusionmodelremark",
+                                    "EntityLogicalName": "benz_prototypemodelgroup",
+                                    "queryString": "$select=benz_name&$filter=Microsoft.Dynamics.CRM.In(PropertyName=@p1,PropertyValues=@p2)&@p1='benz_name'&@p2=[{valueAfters}]",
+                                    "queryOptions": "",
+                                    "expand": {
+                                        "EntityLogicalName": "benz_ModelDesignation_ModelGroupM2M",
+                                        "queryString": "$select=benz_name",
+                                        "queryOptions": ""
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                }
+            },
+            {
+                "index": 3,
+                "enable": true,
+                "specialcase": true,
+                "title": "Model(s) & group(s) exclusion",
+                "EntityLogicalName": "benz_prototypesalesmeasure",
+                "LogicalName": "benz_exclusionmodelremark",
+                "AttributeType": "String",
+                "Label": "Model(s) & group(s) exclusion",
+                "mandatory": false,
+                "values": "",
+                "cell": {
+                    "numberFormat": "@",
+                    "format": {
+                        "verticalAlignment": "Center",
+                        "horizontalAlignment": "Center",
+                        "font": {},
+                        "protection": {
+                            "locked": false
+                        }
+                    },
+                    "values": "",
+                    "WorksheetSingleClicked": [
+                        {
+                            "type": "modelpicker",
+                            "table": [
+                                "benz_prototypemodeldesignation",
+                                "benz_prototypemodelgroup"
+                            ],
+                            "separator": ","
+                        }
+                    ],
+                    "TableChanged": [
+                        {
+                            "type": "tabledata_choicesdataisexist",
+                            "tablefield": [
+                                "benz_prototypemodeldesignation.benz_name",
+                                "benz_prototypemodelgroup.benz_name"
+                            ],
+                            "separator": ","
+                        },
+                        {
+                            "type": "tabledata_dependency",
+                            "tablefield": [
+                                "benz_prototypesalesmeasure.benz_modeltext"
+                            ],
+                            "separator": ","
+                        },
+                        {
+                            "type": "tabledata_model",
+                            "table": [
+                                "benz_prototypemodeldesignation",
+                                "benz_prototypemodelgroup"
+                            ],
+                            "separator": ",",
+                            "querys": [
+                                {
+                                    "id": "Inclusion",
+                                    "add": true,
+                                    "type": "webapi",
+                                    "LogicalName": "benz_PrototypeModelDesignation",
+                                    "EntityLogicalName": "benz_prototypemodeldesignation",
+                                    "queryString": "$select=benz_name&$filter=Microsoft.Dynamics.CRM.In(PropertyName=@p1,PropertyValues=@p2)&@p1='benz_name'&@p2=[{valueAfters}]",
+                                    "queryOptions": ""
+                                },
+                                {
+                                    "id": "InclusionGroup",
+                                    "type": "webapi",
+                                    "add": true,
+                                    "LogicalName": "benz_PrototypeModelDesignation",
+                                    "EntityLogicalName": "benz_prototypemodelgroup",
+                                    "queryString": "$select=benz_name&$filter=Microsoft.Dynamics.CRM.In(PropertyName=@p1,PropertyValues=@p2)&@p1='benz_name'&@p2=[{valueAfters}]",
+                                    "queryOptions": "",
+                                    "expand": {
+                                        "EntityLogicalName": "benz_ModelDesignation_ModelGroupM2M",
+                                        "queryString": "$select=benz_name",
+                                        "queryOptions": ""
+                                    }
+                                },
+                                {
+                                    "id": "Exclusion",
+                                    "add": false,
+                                    "type": "webapi",
+                                    "EntityLogicalName": "benz_prototypemodeldesignation",
+                                    "queryString": "$select=benz_name&$filter=Microsoft.Dynamics.CRM.In(PropertyName=@p1,PropertyValues=@p2)&@p1='benz_name'&@p2=[{valueAfters}]",
+                                    "LogicalName": "benz_exclusionmodelremark"
+                                },
+                                {
+                                    "id": "ExclusionGroup",
+                                    "type": "webapi",
+                                    "add": false,
+                                    "LogicalName": "benz_exclusionmodelremark",
+                                    "EntityLogicalName": "benz_prototypemodelgroup",
+                                    "queryString": "$select=benz_name&$filter=Microsoft.Dynamics.CRM.In(PropertyName=@p1,PropertyValues=@p2)&@p1='benz_name'&@p2=[{valueAfters}]",
+                                    "queryOptions": "",
+                                    "expand": {
+                                        "EntityLogicalName": "benz_ModelDesignation_ModelGroupM2M",
+                                        "queryString": "$select=benz_name",
+                                        "queryOptions": ""
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                }
+            },
+            {
+                "index": 4,
+                "enable": true,
+                "specialcase": true,
+                "title": "Commission No.",
+                "EntityLogicalName": "benz_prototypesalesmeasure",
+                "LogicalName": "benz_commissionno",
+                "AttributeType": "String",
+                "Label": "Commission No.",
+                "mandatory": false,
+                "values": "",
+                "cell": {
+                    "numberFormat": "@",
+                    "format": {
+                        "verticalAlignment": "Center",
+                        "horizontalAlignment": "Center",
+                        "font": {},
+                        "protection": {
+                            "locked": false
+                        }
+                    },
+                    "values": "",
+                    "conditionalFormats": {
+                        "EntityLogicalName": "benz_prototypesalesmeasure",
+                        "LogicalName": "benz_commissionno",
+                        "unique": true,
+                        "action": "CheckDuplication",
+                        "separate": ",",
+                        "regexp": "^(?:\\d{10})$",
+                        "TrueCell": {
+                            "format": {
+                                "fill": {
+                                    "clear": true
+                                }
+                            }
+                        },
+                        "FalseCell": {
+                            "format": {
+                                "fill": {
+                                    "color": "#FF0000"
+                                }
+                            }
+                        }
+                    },
+                    "TableChanged": [
+                        {
+                            "type": "tabledata_regexp",
+                            "regexp": "(^(\\d{10})+(,\\d{10})+?$)|(^(\\d{10})?$)"
+                        }
+                    ]
+                }
+            },
+            {
+                "index": 5,
+                "EntityLogicalName": "benz_prototypesalesmeasure",
+                "LogicalName": "benz_applicableproyear",
+                "AttributeType": "String",
+                "Label": "Applicable prod. Year *",
+                "title": "Applicable prod. Year *",
+                "values": "All",
+                "mandatory": true,
+                "enable": true,
+                "specialcase": true,
+                "cell": {
+                    "numberFormat": "@",
+                    "format": {
+                        "verticalAlignment": "Center",
+                        "horizontalAlignment": "Center",
+                        "font": {},
+                        "protection": {
+                            "locked": false
+                        }
+                    },
+                    "values": "",
+                    "conditionalFormats": {
+                        "separate": ",",
+                        "regexp": "^(?:\\d{4})|(?:all)$",
+                        "TrueCell": {
+                            "format": {
+                                "fill": {
+                                    "clear": true
+                                }
+                            }
+                        },
+                        "FalseCell": {
+                            "format": {
+                                "fill": {
+                                    "color": "#FF0000"
+                                }
+                            }
+                        }
+                    },
+                    "TableChanged": [
+                        {
+                            "type": "tabledata_regexp",
+                            "regexp": "(^ALL$)|(^(\\d{4})+(,\\d{4})+?$)|(^(\\d{4})?$)"
+                        }
+                    ]
+                }
+            },
+            {
+                "index": 6,
+                "enable": true,
+                "specialcase": true,
+                "title": "Model year",
+                "EntityLogicalName": "benz_prototypesalesmeasure",
+                "LogicalName": "benz_modelyear",
+                "AttributeType": "String",
+                "Label": "Model Year",
+                "mandatory": false,
+                "cell": {
+                    "numberFormat": "@",
+                    "format": {
+                        "verticalAlignment": "Center",
+                        "horizontalAlignment": "Center",
+                        "font": {},
+                        "protection": {
+                            "locked": false
+                        }
+                    },
+                    "values": "",
+                    "TableChanged": []
+                }
+            },
+            {
+                "index": 7,
+                "enable": true,
+                "specialcase": true,
+                "title": "General offer / Specific offer? *",
+                "Label": "General offer / Specific offer? *",
+                "@odata.type": "#Microsoft.Dynamics.CRM.PicklistAttributeMetadata",
+                "EntityLogicalName": "benz_prototypesalesmeasure",
+                "LogicalName": "benz_generalofferspecificoffer",
+                "AttributeType": "Choice",
+                "mandatory": true,
+                "action": [
+                    "create",
+                    "update"
+                ],
+                "values": "",
+                "cell": {
+                    "format": {
+                        "font": {},
+                        "protection": {
+                            "locked": false
+                        }
+                    },
+                    "dataValidation": {
+                        "target": "benz_generalofferspecificoffer",
+                        "rule": {
+                            "list": {
+                                "inCellDropDown": true,
+                                "source": ""
+                            }
+                        }
+                    },
+                    "values": "General Measure",
+                    "defalutValues": "General Measure"
+                }
+            },
+            {
+                "index": 8,
+                "enable": true,
+                "specialcase": true,
+                "title": "Support type *",
+                "Label": "Support type *",
+                "EntityLogicalName": "benz_prototypesalesmeasure",
+                "LogicalName": "benz_prototypesupporttype",
+                "SchemaName": "benz_PrototypeSupportType",
+                "outOfTarget": {
+                    "value": "14) Others (please specify)",
+                    "targetLogicalName": "benz_supporttypedescription"
+                },
+                "LookupEntityLogicalName": "benz_supporttype",
+                "LookupEntityFieldLogicalName": "benz_name",
+                "AttributeType": "Lookup",
+                "LookupInoutType": "choice",
+                "LookupAllowUsingExist": true,
+                "mandatory": true,
+                "cell": {
+                    "columnWidth": 350,
+                    "numberFormat": "#",
+                    "format": {
+                        "verticalAlignment": "Center",
+                        "horizontalAlignment": "Center",
+                        "font": {},
+                        "protection": {
+                            "locked": false
+                        }
+                    },
+                    "values": "",
+                    "dataValidation": {
+                        "ignoreBlanks": false,
+                        "prompt": {
+                            "message": "",
+                            "showPrompt": false,
+                            "title": ""
+                        },
+                        "errorAlert": {
+                            "showAlert": false,
+                            "message": "",
+                            "style": "Stop",
+                            "title": ""
+                        },
+                        "target": "table_benz_supporttype",
+                        "rule": {
+                            "list": {
+                                "inCellDropDown": true,
+                                "source": ""
+                            }
+                        }
+                    },
+                    "TableChanged": [
+                        {
+                            "type": "tabledata_checkvaluesetvalue",
+                            "value": "",
+                            "continue": {
+                                "parameters2": "{valueAfters}",
+                                "parameters1": "1) Discount on base vehicle price",
+                                "operator": "===",
+                                "targetLogicalName": "benz_details",
+                                "value": "=IF([@[Support type *]]=\"1) Discount on base vehicle price\", \"Price from \" & TEXT([@[Retail price from]],\"$###,##0\") & \" to \" & TEXT([@[Retail price to]],\"$###,##0\") & \" (-\" & TEXT([@[Retail price from]]-[@[Retail price to]],\"$###,##0\") &\")\",\"\")"
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "index": 9,
+                "enable": true,
+                "specialcase": true,
+                "title": "Other Support Type",
+                "Label": "Other Support Type",
+                "EntityLogicalName": "benz_prototypesalesmeasure",
+                "LogicalName": "benz_supporttypedescription",
+                "AttributeType": "String",
+                "mandatory": false,
+                "cell": {
+                    "format": {
+                        "columnWidth": 200,
+                        "font": {},
+                        "protection": {
+                            "locked": false
+                        }
+                    },
+                    "TableChanged": [
+                        {
+                            "type": "tabledata_depenfieldrequired",
+                            "tablefield": [
+                                "benz_prototypesupporttype"
+                            ],
+                            "targetvalue": "14) Others (please specify)",
+                            "errorAlert": {
+                                "style": "error",
+                                "message": "{row} is Special case, please input remark! ",
+                                "showAlert": true
+                            }
+                        }
+                    ],
+                    "fouceCheckChange": true,
+                    "values": "",
+                    "defalutValues": ""
+                }
+            },
+            {
+                "index": 10,
+                "enable": true,
+                "specialcase": true,
+                "title": "Details *",
+                "Label": "Details *",
+                "EntityLogicalName": "benz_prototypesalesmeasure",
+                "LogicalName": "benz_details",
+                "AttributeType": "String",
+                "mandatory": true,
+                "cell": {
+                    "format": {
+                        "verticalAlignment": "Center",
+                        "horizontalAlignment": "Center",
+                        "font": {},
+                        "protection": {
+                            "locked": false
+                        }
+                    },
+                    "values": "=IF([@[Support type *]]=\"1) Discount on base vehicle price\", \"Price from \" & TEXT([@[Retail price from]],\"$###,##0\") & \" to \" & TEXT([@[Retail price to]],\"$###,##0\") & \" (-\" & TEXT([@[Retail price from]]-[@[Retail price to]],\"$###,##0\") &\")\",\"\")",
+                    "defalutValues": "=IF([@[Support type *]]=\"1) Discount on base vehicle price\", \"Price from \" & TEXT([@[Retail price from]],\"$###,##0\") & \" to \" & TEXT([@[Retail price to]],\"$###,##0\") & \" (-\" & TEXT([@[Retail price from]]-[@[Retail price to]],\"$###,##0\") &\")\",\"\")"
+                }
+            },
+            {
+                "index": 11,
+                "enable": true,
+                "specialcase": true,
+                "title": "Retail price from",
+                "EntityLogicalName": "benz_prototypesalesmeasure",
+                "LogicalName": "benz_retailpricefrom",
+                "AttributeType": "Number",
+                "Label": "Retail price from",
+                "values": "",
+                "cell": {
+                    "numberFormat": "$#,##0.00",
+                    "format": {
+                        "verticalAlignment": "Center",
+                        "horizontalAlignment": "Center",
+                        "font": {},
+                        "protection": {
+                            "locked": false
+                        }
+                    },
+                    "dataValidation": {
+                        "rule": {
+                            "decimal": {
+                                "operator": "GreaterThanOrEqualTo",
+                                "formula1": 0
+                            }
+                        }
+                    },
+                    "values": "0",
+                    "defalutValues": "0"
+                }
+            },
+            {
+                "index": 12,
+                "EntityLogicalName": "benz_prototypesalesmeasure",
+                "LogicalName": "benz_retailpriceto",
+                "AttributeType": "Number",
+                "Label": "Retail price to",
+                "values": "",
+                "enable": true,
+                "specialcase": true,
+                "title": "Retail price to",
+                "cell": {
+                    "numberFormat": "$#,##0.00",
+                    "format": {
+                        "verticalAlignment": "Center",
+                        "horizontalAlignment": "Center",
+                        "font": {},
+                        "protection": {
+                            "locked": false
+                        }
+                    },
+                    "dataValidation": {
+                        "rule": {
+                            "decimal": {
+                                "operator": "GreaterThanOrEqualTo",
+                                "formula1": 0
+                            }
+                        }
+                    },
+                    "values": "0",
+                    "defalutValues": "0"
+                }
+            },
+            {
+                "index": 13,
+                "enable": true,
+                "specialcase": true,
+                "title": "Support per unit *",
+                "Label": "Support per unit *",
+                "EntityLogicalName": "benz_prototypesalesmeasure",
+                "LogicalName": "benz_supportperunit",
+                "AttributeType": "Number",
+                "mandatory": true,
+                "cell": {
+                    "numberFormat": "$#,##0.00",
+                    "format": {
+                        "verticalAlignment": "Center",
+                        "horizontalAlignment": "Center",
+                        "font": {},
+                        "protection": {
+                            "locked": false
+                        }
+                    },
+                    "dataValidation": {
+                        "ignoreBlanks": false,
+                        "rule": {
+                            "decimal": {
+                                "operator": "GreaterThanOrEqualTo",
+                                "formula1": 0
+                            }
+                        }
+                    },
+                    "values": "=[@[Retail price from]]-[@[Retail price to]]",
+                    "defalutValues": "=[@[Retail price from]]-[@[Retail price to]]"
+                }
+            },
+            {
+                "index": 14,
+                "enable": true,
+                "specialcase": true,
+                "title": "MBHK support per unit",
+                "EntityLogicalName": "benz_prototypesalesmeasure",
+                "LogicalName": "benz_mbhksupportperunit",
+                "AttributeType": "Number",
+                "Label": "MBHK Support per Unit",
+                "mandatory": false,
+                "cell": {
+                    "numberFormat": "$#,##0.00",
+                    "format": {
+                        "verticalAlignment": "Center",
+                        "horizontalAlignment": "Center",
+                        "font": {},
+                        "protection": {
+                            "locked": false
+                        }
+                    },
+                    "dataValidation": {
+                        "rule": {
+                            "decimal": {
+                                "operator": "GreaterThanOrEqualTo",
+                                "formula1": 0
+                            }
+                        }
+                    },
+                    "values": "=[@[Support per unit *]]*[@[MBHK share %]]",
+                    "defalutValues": "=[@[Support per unit *]]*[@[MBHK share %]]"
+                },
+                "isFormula": true
+            },
+            {
+                "index": 15,
+                "enable": true,
+                "specialcase": true,
+                "title": "MBHK share %",
+                "EntityLogicalName": "benz_prototypesalesmeasure",
+                "LogicalName": "benz_mbhkshare",
+                "AttributeType": "percentage",
+                "Label": "MBHK Share %",
+                "mandatory": false,
+                "values": "",
+                "cell": {
+                    "numberFormat": "0%",
+                    "format": {
+                        "verticalAlignment": "Center",
+                        "horizontalAlignment": "Center",
+                        "font": {},
+                        "protection": {
+                            "locked": false
+                        }
+                    },
+                    "dataValidation": {
+                        "rule": {
+                            "decimal": {
+                                "operator": "GreaterThanOrEqualTo",
+                                "formula1": 0
+                            }
+                        }
+                    },
+                    "values": ""
+                }
+            },
+            {
+                "index": 16,
+                "enable": true,
+                "specialcase": true,
+                "title": "ZF support per unit",
+                "EntityLogicalName": "benz_prototypesalesmeasure",
+                "LogicalName": "benz_zfsupportperunit",
+                "AttributeType": "Number",
+                "Label": "ZF Support per Unit",
+                "mandatory": false,
+                "cell": {
+                    "numberFormat": "$#,##0.00",
+                    "format": {
+                        "verticalAlignment": "Center",
+                        "horizontalAlignment": "Center",
+                        "font": {},
+                        "protection": {
+                            "locked": false
+                        }
+                    },
+                    "dataValidation": {
+                        "rule": {
+                            "decimal": {
+                                "operator": "GreaterThanOrEqualTo",
+                                "formula1": 0
+                            }
+                        }
+                    },
+                    "values": "=[@[Support per unit *]]*[@[ZF share %]]",
+                    "defalutValues": "=[@[Support per unit *]]*[@[ZF share %]]"
+                },
+                "isFormula": true
+            },
+            {
+                "index": 17,
+                "enable": true,
+                "specialcase": true,
+                "title": "ZF share %",
+                "EntityLogicalName": "benz_prototypesalesmeasure",
+                "LogicalName": "benz_zfshare",
+                "AttributeType": "percentage",
+                "Label": "ZF Share %",
+                "values": "",
+                "mandatory": false,
+                "cell": {
+                    "numberFormat": "0%",
+                    "format": {
+                        "verticalAlignment": "Center",
+                        "horizontalAlignment": "Center",
+                        "font": {},
+                        "protection": {
+                            "locked": false
+                        }
+                    },
+                    "dataValidation": {
+                        "rule": {
+                            "decimal": {
+                                "operator": "GreaterThanOrEqualTo",
+                                "formula1": 0
+                            }
+                        }
+                    },
+                    "values": ""
+                }
+            },
+            {
+                "index": 18,
+                "enable": true,
+                "specialcase": true,
+                "title": "Total share %",
+                "EntityLogicalName": "benz_prototypesalesmeasure",
+                "LogicalName": "benz_totalshare",
+                "AttributeType": "percentage",
+                "Label": "Total Share %",
+                "values": "",
+                "mandatory": false,
+                "needFixedValue": true,
+                "fixedValue": "100",
+                "cell": {
+                    "numberFormat": "0%",
+                    "format": {
+                        "verticalAlignment": "Center",
+                        "horizontalAlignment": "Center",
+                        "font": {},
+                        "protection": {
+                            "locked": true
+                        }
+                    },
+                    "dataValidation": {
+                        "rule": {
+                            "decimal": {
+                                "operator": "GreaterThanOrEqualTo",
+                                "formula1": 0
+                            }
+                        }
+                    },
+                    "values": "=[@[MBHK share %]]+[@[ZF share %]]",
+                    "defalutValues": "=[@[MBHK share %]]+[@[ZF share %]]"
+                },
+                "isFormula": true
+            },
+            {
+                "index": 19,
+                "enable": true,
+                "specialcase": true,
+                "title": "Share % validation",
+                "EntityLogicalName": "benz_prototypesalesmeasure",
+                "LogicalName": "benz_sharevalidation",
+                "AttributeType": "Boolean",
+                "Label": "Share % Validation",
+                "values": "",
+                "mandatory": false,
+                "cell": {
+                    "valuesMap": {
+                        "true": true,
+                        "false": false
+                    },
+                    "format": {
+                        "verticalAlignment": "Center",
+                        "horizontalAlignment": "Center",
+                        "font": {},
+                        "protection": {
+                            "locked": true
+                        }
+                    },
+                    "values": "=([@[MBHK share %]]+[@[ZF share %]])=1",
+                    "defalutValues": "=([@[MBHK share %]]+[@[ZF share %]])=1"
+                },
+                "isFormula": true
+            },
+            {
+                "index": 20,
+                "enable": true,
+                "specialcase": true,
+                "title": "Total unit *",
+                "Label": "Total unit *",
+                "EntityLogicalName": "benz_prototypesalesmeasure",
+                "LogicalName": "benz_unit",
+                "AttributeType": "Number",
+                "values": "",
+                "mandatory": true,
+                "cell": {
+                    "numberFormat": "#,##0",
+                    "format": {
+                        "verticalAlignment": "Center",
+                        "horizontalAlignment": "Center",
+                        "font": {},
+                        "protection": {
+                            "locked": false
+                        }
+                    },
+                    "dataValidation": {
+                        "rule": {
+                            "wholeNumber": {
+                                "operator": "GreaterThanOrEqualTo",
+                                "formula1": 0
+                            }
+                        }
+                    },
+                    "values": "0",
+                    "defalutValues": "0"
+                }
+            },
+            {
+                "index": 21,
+                "enable": true,
+                "specialcase": true,
+                "title": "Share quota",
+                "EntityLogicalName": "benz_prototypesalesmeasure",
+                "LogicalName": "benz_sharequota",
+                "AttributeType": "String",
+                "Label": "Share quota",
+                "values": "",
+                "mandatory": false,
+                "cell": {
+                    "format": {
+                        "verticalAlignment": "Center",
+                        "horizontalAlignment": "Center",
+                        "font": {},
+                        "protection": {
+                            "locked": false
+                        }
+                    },
+                    "values": "",
+                    "TableChanged": [
+                        {
+                            "type": "tabledata_regexp",
+                            "regexp": "(^(\\d|\\S)+$)|(^((\\d|\\S)+)+(,(\\d|\\S)+)+?$)|(^((\\d|\\S)+)?$)"
+                        }
+                    ]
+                }
+            },
+            {
+                "index": 22,
+                "EntityLogicalName": "benz_prototypesalesmeasure",
+                "LogicalName": "benz_remarksaddquota",
+                "AttributeType": "Boolean",
+                "Label": "Remarks - Add quota",
+                "enable": true,
+                "specialcase": true,
+                "title": "Remarks - add quota",
+                "values": "",
+                "mandatory": false,
+                "cell": {
+                    "valuesMap": {
+                        "Yes": true,
+                        "No": false
+                    },
+                    "dataValidation": {
+                        "rule": {
+                            "list": {
+                                "inCellDropDown": true,
+                                "source": "No,Yes"
+                            }
+                        }
+                    },
+                    "format": {
+                        "verticalAlignment": "Center",
+                        "horizontalAlignment": "Center",
+                        "font": {},
+                        "protection": {
+                            "locked": false
+                        }
+                    },
+                    "values": "No",
+                    "defalutValues": "No"
+                }
+            },
+            {
+                "index": 23,
+                "EntityLogicalName": "benz_prototypesalesmeasure",
+                "LogicalName": "benz_addquotaformeasureid",
+                "AttributeType": "String",
+                "Label": "Add quota for measure ID",
+                "values": "",
+                "enable": true,
+                "specialcase": true,
+                "title": "Add quota for measure ID",
+                "mandatory": false,
+                "cell": {
+                    "format": {
+                        "verticalAlignment": "Center",
+                        "horizontalAlignment": "Center",
+                        "font": {},
+                        "protection": {
+                            "locked": false
+                        }
+                    },
+                    "values": "",
+                    "TableChanged": [
+                        {
+                            "type": "tabledata_regexp",
+                            "regexp": "(^(\\d|\\S)+$)|(^((\\d|\\S)+)+(,(\\d|\\S)+)+?$)|(^((\\d|\\S)+)?$)"
+                        }
+                    ]
+                }
+            },
+            {
+                "index": 24,
+                "enable": true,
+                "specialcase": true,
+                "title": "Unit(s) for backlog",
+                "EntityLogicalName": "benz_prototypesalesmeasure",
+                "LogicalName": "benz_unitsforbacklog",
+                "AttributeType": "Number",
+                "Label": "Unit(s) for backlog",
+                "values": "",
+                "mandatory": false,
+                "cell": {
+                    "numberFormat": "#,##0",
+                    "format": {
+                        "verticalAlignment": "Center",
+                        "horizontalAlignment": "Center",
+                        "font": {},
+                        "protection": {
+                            "locked": false
+                        }
+                    },
+                    "dataValidation": {
+                        "rule": {
+                            "wholeNumber": {
+                                "operator": "GreaterThanOrEqualTo",
+                                "formula1": 0
+                            }
+                        }
+                    },
+                    "values": "0",
+                    "defalutValues": "0"
+                }
+            },
+            {
+                "index": 25,
+                "EntityLogicalName": "benz_prototypesalesmeasure",
+                "LogicalName": "benz_totalmbhksupport",
+                "AttributeType": "Number",
+                "Label": "Total MBHK Support",
+                "enable": true,
+                "specialcase": true,
+                "title": "Total MBHK support",
+                "mandatory": false,
+                "cell": {
+                    "numberFormat": "$#,##0.00",
+                    "format": {
+                        "verticalAlignment": "Center",
+                        "horizontalAlignment": "Center",
+                        "font": {},
+                        "protection": {
+                            "locked": true
+                        }
+                    },
+                    "dataValidation": {
+                        "rule": {
+                            "decimal": {
+                                "operator": "GreaterThanOrEqualTo",
+                                "formula1": 0
+                            }
+                        }
+                    },
+                    "values": "=[@[Total unit *]]*[@[MBHK support per unit]]",
+                    "defalutValues": "=[@[Total unit *]]*[@[MBHK support per unit]]"
+                },
+                "isFormula": true
+            },
+            {
+                "index": 26,
+                "EntityLogicalName": "benz_prototypesalesmeasure",
+                "LogicalName": "benz_totalzfsupport",
+                "AttributeType": "Number",
+                "Label": "Total ZF Support",
+                "enable": true,
+                "specialcase": true,
+                "title": "Total ZF support",
+                "mandatory": false,
+                "cell": {
+                    "numberFormat": "$#,##0.00",
+                    "format": {
+                        "verticalAlignment": "Center",
+                        "horizontalAlignment": "Center",
+                        "font": {},
+                        "protection": {
+                            "locked": true
+                        }
+                    },
+                    "dataValidation": {
+                        "rule": {
+                            "decimal": {
+                                "operator": "GreaterThanOrEqualTo",
+                                "formula1": 0
+                            }
+                        }
+                    },
+                    "values": "=[@[Total unit *]]*[@[ZF support per unit]]",
+                    "defalutValues": "=[@[Total unit *]]*[@[ZF support per unit]]"
+                },
+                "isFormula": true
+            },
+            {
+                "index": 27,
+                "EntityLogicalName": "benz_prototypesalesmeasure",
+                "LogicalName": "benz_zfremarks",
+                "AttributeType": "String",
+                "Label": "ZF remarks",
+                "enable": true,
+                "specialcase": true,
+                "title": "ZF remarks",
+                "values": "",
+                "mandatory": false,
+                "cell": {
+                    "format": {
+                        "verticalAlignment": "Center",
+                        "horizontalAlignment": "Center",
+                        "font": {},
+                        "protection": {
+                            "locked": false
+                        }
+                    },
+                    "values": ""
+                }
+            },
+            {
+                "index": 28,
+                "EntityLogicalName": "benz_prototypesalesmeasure",
+                "LogicalName": "benz_inconjunctionwith",
+                "AttributeType": "String",
+                "Label": "In conjunction with ",
+                "values": "",
+                "enable": true,
+                "specialcase": true,
+                "title": "In conjunction with",
+                "mandatory": false,
+                "cell": {
+                    "format": {
+                        "verticalAlignment": "Center",
+                        "horizontalAlignment": "Center",
+                        "font": {},
+                        "protection": {
+                            "locked": false
+                        }
+                    },
+                    "values": "",
+                    "ConditionalFormats": {
+                        "EntityLogicalName": "benz_prototypesalesmeasure",
+                        "LogicalName": "benz_name",
+                        "separate": ",",
+                        "regexp": "^(?:[a-zA-Z0-9-]*)$"
+                    },
+                    "TableChanged": [
+                        {
+                            "type": "tabledata_regexp",
+                            "regexp": "(^(\\d|\\S)+$)|(^((\\d|\\S)+)+(,(\\d|\\S)+)+?$)|(^((\\d|\\S)+)?$)"
+                        },
+                        {
+                            "type": "tabledata_getdataisexist",
+                            "EntityLogicalName": "benz_prototypesalesmeasure",
+                            "queryString": "$filter=benz_name eq '{valueAfters}'",
+                            "queryOptions": ""
+                        }
+                    ]
+                }
+            },
+            {
+                "index": 29,
+                "EntityLogicalName": "benz_prototypesalesmeasure",
+                "LogicalName": "benz_replacememoitemno",
+                "AttributeType": "String",
+                "Label": "Replace measure ID",
+                "values": "",
+                "enable": true,
+                "specialcase": true,
+                "title": "Replace measure ID",
+                "mandatory": false,
+                "cell": {
+                    "format": {
+                        "verticalAlignment": "Center",
+                        "horizontalAlignment": "Center",
+                        "font": {},
+                        "protection": {
+                            "locked": false
+                        }
+                    },
+                    "values": ""
+                }
+            },
+            {
+                "index": 30,
+                "EntityLogicalName": "benz_prototypesalesmeasure",
+                "LogicalName": "benz_effectivedate",
+                "AttributeType": "Date",
+                "Label": "Replacement memo Effective Date",
+                "values": "",
+                "enable": true,
+                "specialcase": true,
+                "title": "Replacement memo Effective date",
+                "mandatory": false,
+                "cell": {
+                    "numberFormat": "dd/MMM/yyyy",
+                    "format": {
+                        "verticalAlignment": "Center",
+                        "horizontalAlignment": "Center",
+                        "font": {},
+                        "protection": {
+                            "locked": false
+                        }
+                    },
+                    "dataValidation": {
+                        "rule": {
+                            "date": {
+                                "operator": "GreaterThan",
+                                "formula1": "1/1/2000"
+                            }
+                        }
+                    },
+                    "values": ""
+                }
+            },
+            {
+                "index": 31,
+                "EntityLogicalName": "benz_prototypesalesmeasure",
+                "LogicalName": "benz_oldmemoenddate",
+                "AttributeType": "Date",
+                "Label": "Old Memo End Date",
+                "values": "",
+                "enable": true,
+                "specialcase": true,
+                "title": "Old memo end date",
+                "mandatory": false,
+                "cell": {
+                    "numberFormat": "dd/MMM/yyyy",
+                    "format": {
+                        "verticalAlignment": "Center",
+                        "horizontalAlignment": "Center",
+                        "font": {},
+                        "protection": {
+                            "locked": false
+                        }
+                    },
+                    "dataValidation": {
+                        "rule": {
+                            "date": {
+                                "operator": "GreaterThan",
+                                "formula1": "1/1/2000"
+                            }
+                        }
+                    },
+                    "values": ""
+                }
+            },
+            {
+                "index": 32,
+                "EntityLogicalName": "benz_prototypesalesmeasure",
+                "LogicalName": "benz_notinconjunctionwith",
+                "AttributeType": "String",
+                "Label": "Not in conjunction with",
+                "values": "",
+                "enable": true,
+                "specialcase": true,
+                "title": "Not in conjunction with",
+                "mandatory": false,
+                "cell": {
+                    "numberFormat": "@",
+                    "format": {
+                        "verticalAlignment": "Center",
+                        "horizontalAlignment": "Center",
+                        "font": {},
+                        "protection": {
+                            "locked": false
+                        }
+                    },
+                    "values": "",
+                    "TableChanged": [
+                        {
+                            "type": "tabledata_regexp",
+                            "regexp": "(^(\\d|\\S)+$)|(^((\\d|\\S)+)+(,(\\d|\\S)+)+?$)|(^((\\d|\\S)+)?$)"
+                        },
+                        {
+                            "type": "tabledata_getdataisexist",
+                            "EntityLogicalName": "benz_prototypesalesmeasure",
+                            "queryString": "$filter=benz_name eq '{valueAfters}'",
+                            "queryOptions": ""
+                        }
+                    ]
+                }
+            },
+            {
+                "index": 33,
+                "EntityLogicalName": "benz_prototypesalesmeasure",
+                "LogicalName": "benz_releasetimeline",
+                "AttributeType": "Date",
+                "Label": "Release Timeline",
+                "values": "",
+                "enable": true,
+                "specialcase": true,
+                "title": "Release timeline",
+                "mandatory": false,
+                "cell": {
+                    "numberFormat": "dd/MMM/yyyy",
+                    "format": {
+                        "verticalAlignment": "Center",
+                        "horizontalAlignment": "Center",
+                        "font": {},
+                        "protection": {
+                            "locked": false
+                        }
+                    },
+                    "dataValidation": {
+                        "rule": {
+                            "date": {
+                                "operator": "GreaterThan",
+                                "formula1": "1/1/2000"
+                            }
+                        }
+                    },
+                    "values": ""
+                }
+            },
+            {
+                "index": 34,
+                "EntityLogicalName": "benz_prototypesalesmeasure",
+                "LogicalName": "benz_longtermmeasure",
+                "AttributeType": "Boolean",
+                "Label": "Long-term Measure",
+                "values": "",
+                "enable": true,
+                "specialcase": true,
+                "title": "Long-term measure",
+                "mandatory": false,
+                "cell": {
+                    "valuesMap": {
+                        "Yes": true,
+                        "No": false
+                    },
+                    "dataValidation": {
+                        "rule": {
+                            "list": {
+                                "inCellDropDown": true,
+                                "source": "No,Yes"
+                            }
+                        }
+                    },
+                    "format": {
+                        "verticalAlignment": "Center",
+                        "horizontalAlignment": "Center",
+                        "font": {},
+                        "protection": {
+                            "locked": false
+                        }
+                    },
+                    "values": "No",
+                    "defalutValues": "No"
+                }
+            },
+            {
+                "index": 35,
+                "EntityLogicalName": "benz_prototypesalesmeasure",
+                "LogicalName": "benz_remarksforclaim",
+                "AttributeType": "String",
+                "Label": "Remarks for Claim",
+                "values": "",
+                "enable": true,
+                "specialcase": true,
+                "title": "Remarks for Claim",
+                "mandatory": false,
+                "cell": {
+                    "format": {
+                        "verticalAlignment": "Center",
+                        "horizontalAlignment": "Center",
+                        "font": {},
+                        "protection": {
+                            "locked": false
+                        }
+                    },
+                    "values": ""
+                }
+            },
+            {
+                "index": 36,
+                "EntityLogicalName": "benz_prototypesalesmeasure",
+                "LogicalName": "benz_unitexceed",
+                "AttributeType": "Boolean",
+                "Label": "Unit for Claim's validation *",
+                "title": "Unit for Claim's validation *",
+                "values": "",
+                "enable": true,
+                "specialcase": true,
+                "mandatory": true,
+                "cell": {
+                        "valuesMap": {
+                            "Can Exceed": true,
+                            "Cannot Exceed": false
+                        },
+                    "dataValidation": {
+                        "rule": {
+                            "list": {
+                                "inCellDropDown": true,
+                                "source": "Cannot Exceed,Can Exceed"
+                            }
+                        }
+                    },
+                    "format": {
+                        "verticalAlignment": "Center",
+                        "horizontalAlignment": "Center",
+                        "font": {},
+                        "protection": {
+                            "locked": false
+                        }
+                    },
+                    "values": "Cannot Exceed",
+                    "defalutValues": "Cannot Exceed"
+                }
+            },
+            {
+                "index": 37,
+                "EntityLogicalName": "benz_prototypesalesmeasure",
+                "LogicalName": "benz_mbhksupportperunitexceed",
+                "AttributeType": "Boolean",
+                "Label": "MBHK support Per unit for Claim's Validation *",
+                "title": "MBHK support Per unit for Claim's Validation *",
+                "values": "",
+                "enable": true,
+                "specialcase": true,
+                "mandatory": true,
+                "cell": {
+                    
+                    "valuesMap": {
+                        "Can Exceed": true,
+                        "Cannot Exceed": false
+                    },
+                    "dataValidation": {
+                        "rule": {
+                            "list": {
+                                "inCellDropDown": true,
+                                "source": "Cannot Exceed,Can Exceed"
+                            }
+                        }
+                    },
+                    "format": {
+                        "verticalAlignment": "Center",
+                        "horizontalAlignment": "Center",
+                        "font": {},
+                        "protection": {
+                            "locked": false
+                        }
+                    },
+                    "values": "Can Exceed",
+                    "defalutValues": "Can Exceed"
+                }
+            },
+            {
+                "index": 38,
+                "EntityLogicalName": "benz_prototypesalesmeasure",
+                "LogicalName": "benz_mbhktotalsupportamtexceed",
+                "AttributeType": "Boolean",
+                "Label": "MBHK total support amt for Claim's Validation *",
+                "title": "MBHK total support amt for Claim's validation *",
+                "values": "",
+                "enable": true,
+                "specialcase": true,
+                "mandatory": true,
+                "cell": {
+                    "valuesMap": {
+                        "Can Exceed": true,
+                        "Cannot Exceed": false
+                    },
+                    "dataValidation": {
+                        "rule": {
+                            "list": {
+                                "inCellDropDown": true,
+                                "source": "Cannot Exceed,Can Exceed"
+                            }
+                        }
+                    },
+                    "format": {
+                        "verticalAlignment": "Center",
+                        "horizontalAlignment": "Center",
+                        "font": {},
+                        "protection": {
+                            "locked": false
+                        }
+                    },
+                    "values": "Cannot Exceed",
+                    "defalutValues": "Cannot Exceed"
+                }
+            },
+            {
+                "index": 39,
+                "EntityLogicalName": "benz_prototypesalesmeasure",
+                "LogicalName": "benz_mbhkremarks",
+                "AttributeType": "String",
+                "Label": "MBHK Remarks",
+                "values": "",
+                "enable": true,
+                "specialcase": true,
+                "title": "MBHK Remarks",
+                "mandatory": false,
+                "cell": {
+                    "format": {
+                        "verticalAlignment": "Center",
+                        "horizontalAlignment": "Center",
+                        "font": {},
+                        "protection": {
+                            "locked": false
+                        }
+                    },
+                    "values": ""
+                }
+            },
+            {
+                "index": 40,
+                "@odata.type": "#Microsoft.Dynamics.CRM.StringAttributeMetadata",
+                "EntityLogicalName": "benz_prototypesalesmeasure",
+                "LogicalName": "benz_measurepurpose",
+                "AttributeType": "String",
+                "Label": "Measure Purpose",
+                "values": "",
+                "enable": true,
+                "specialcase": true,
+                "title": "Measure purpose",
+                "mandatory": false,
+                "cell": {
+                    "format": {
+                        "verticalAlignment": "Center",
+                        "horizontalAlignment": "Center",
+                        "font": {},
+                        "protection": {
+                            "locked": false
+                        }
+                    },
+                    "values": ""
+                }
+            },
+            {
+                "index": 41,
+                "EntityLogicalName": "benz_prototypesalesmeasure",
+                "LogicalName": "benz_contractdate",
+                "AttributeType": "Date",
+                "Label": "Contract Date From",
+                "values": "",
+                "enable": true,
+                "specialcase": true,
+                "title": "Contract date From",
+                "mandatory": false,
+                "cell": {
+                    "numberFormat": "dd/MMM/yyyy",
+                    "format": {
+                        "verticalAlignment": "Center",
+                        "horizontalAlignment": "Center",
+                        "font": {},
+                        "protection": {
+                            "locked": false
+                        }
+                    },
+                    "dataValidation": {
+                        "rule": {
+                            "date": {
+                                "operator": "GreaterThan",
+                                "formula1": "1/1/2000"
+                            }
+                        }
+                    },
+                    "values": ""
+                }
+            },
+            {
+                "index": 42,
+                "EntityLogicalName": "benz_prototypesalesmeasure",
+                "LogicalName": "benz_contractdateto",
+                "AttributeType": "Date",
+                "Label": "Contract Date to",
+                "values": "",
+                "enable": true,
+                "specialcase": true,
+                "title": "Contract date to",
+                "mandatory": false,
+                "cell": {
+                    "numberFormat": "dd/MMM/yyyy",
+                    "format": {
+                        "verticalAlignment": "Center",
+                        "horizontalAlignment": "Center",
+                        "font": {},
+                        "protection": {
+                            "locked": false
+                        }
+                    },
+                    "dataValidation": {
+                        "rule": {
+                            "date": {
+                                "operator": "GreaterThan",
+                                "formula1": "1/1/2000"
+                            }
+                        }
+                    },
+                    "values": ""
+                }
+            },
+            {
+                "index": 43,
+                "EntityLogicalName": "benz_prototypesalesmeasure",
+                "LogicalName": "benz_licensedby",
+                "AttributeType": "Date",
+                "Label": "Licensed By",
+                "values": "",
+                "enable": true,
+                "specialcase": true,
+                "title": "Licensed by",
+                "mandatory": false,
+                "cell": {
+                    "numberFormat": "dd/MMM/yyyy",
+                    "format": {
+                        "verticalAlignment": "Center",
+                        "horizontalAlignment": "Center",
+                        "font": {},
+                        "protection": {
+                            "locked": false
+                        }
+                    },
+                    "dataValidation": {
+                        "rule": {
+                            "date": {
+                                "operator": "GreaterThan",
+                                "formula1": "1/1/2000"
+                            }
+                        }
+                    },
+                    "values": ""
+                }
+            },
+            {
+                "index": 44,
+                "EntityLogicalName": "benz_prototypesalesmeasure",
+                "LogicalName": "benz_mbhksdbudgetyear",
+                "AttributeType": "String",
+                "Label": "MBHK SD Budget Year *",
+                "title": "MBHK SD Budget Year *",
+                "values": "",
+                "enable": true,
+                "specialcase": true,
+                "cell": {
+                    "numberFormat": "@",
+                    "format": {
+                        "verticalAlignment": "Center",
+                        "horizontalAlignment": "Center",
+                        "font": {},
+                        "protection": {
+                            "locked": false
+                        }
+                    },
+                    "TableChanged": [
+                        {
+                            "type": "tabledata_regexp",
+                            "regexp": "^\\d{4}$"
+                        }
+                    ],
+                    "values": ""
+                }
+            }
+        ]
+    },
+    "main_hardcode": [
+        {
+            "LogicalName": "benz_companyname",
+            "value": 650230001
+        }
+    ]
+}

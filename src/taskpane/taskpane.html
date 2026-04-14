@@ -1,0 +1,211 @@
+<!-- Copyright (c) Microsoft Corporation. All rights reserved. Licensed under the MIT License. -->
+<!-- This file shows how to design a first-run page that provides a welcome screen to the user about the features of the add-in. -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Benz Task Pane Add-in</title>
+
+  <!-- Load the Office JavaScript APIs -->
+  <script src="https://appsforoffice.microsoft.com/lib/1.1/hosted/office.js" type="text/javascript"></script>
+
+  <!-- For more information on Fluent UI, visit https://developer.microsoft.com/fluentui#/. -->
+  <link rel="stylesheet"
+    href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-core/11.0.0/css/fabric.min.css" />
+
+  <!-- Template styles -->
+  <link href="taskpane.css" rel="stylesheet" type="text/css" />
+  <link href="../../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+  <link href="../css/datatables.min.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="../js/datatables.min.js"></script>
+
+  <script type="text/javascript" src="../js/pdfmake.min.js"></script>
+  <script type="text/javascript" src="../js/vfs_fonts.js"></script>
+  <!--  -->
+  <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" type="text/css"
+    href="https://cdn.datatables.net/v/bs5/jszip-2.5.0/dt-1.11.5/b-2.2.2/b-html5-2.2.2/b-print-2.2.2/sc-2.0.5/sp-2.0.0/sl-1.3.4/datatables.min.css" />
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+  <script type="text/javascript"
+    src="https://cdn.datatables.net/v/bs5/jszip-2.5.0/dt-1.11.5/b-2.2.2/b-html5-2.2.2/b-print-2.2.2/sc-2.0.5/sp-2.0.0/sl-1.3.4/datatables.min.js"></script> -->
+
+  <!-- <script src="https://appsforoffice.microsoft.com/lib/1.1/hosted/custom-functions-runtime.js" type="text/javascript"></script> -->
+</head>
+
+<body class="ms-font-m ms-welcome ms-Fabric">
+  <div id="message"></div>
+  <!-- <div class="alert alert-danger align-items-center" id="message-area" role="alert" style="display:none;">
+      <svg xmlns="http://www.w3.org/2000/svg" class="danger  bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label="Danger:" style="width: 30px;">
+        <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"></path>
+      </svg>
+      <div id="message-area-text">
+        
+      </div>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+
+    </div> -->
+
+  <div class="bottom-0 start-0  p-1 position-fixed fw-lighter" style="font-size: 9px;">
+    v1.2.0304.1226
+  </div>
+  <div class="modal-backdrop fade show" id="loadingspinner" style="opacity: 0.3;background-color: #fff;    ">
+    <div class="position-absolute top-50 start-50 translate-middle">
+      <div class="spinner-border light" role="status"></div>
+    </div>
+  </div>
+
+  <div class="d-flex align-items-end flex-column bd-highlight mb-3 h-100" style="">
+    <div id="main-nav" style="display: none"
+      class="w-100 p-2 ms-welcome__header ms-bgColor-neutralLighter site-header sticky-top py-1">
+      <div class="container w-100">
+        <div id="action-nav" class="row row-cols-2 justify-content-center">
+          <div class="col-5 col-lg-2 text-center m-1" id="action_back" style="display: none">
+            <button class="btn btn-primary mt-2">
+              <span class="ms-Button-label">Back </span>
+            </button>
+          </div>
+          <!-- <div class="col text-center m-1" id="applyModel" style="display: none;" >
+              <button class="btn btn-primary mt-2">
+                <span class="ms-Button-label">Apply </span>
+              </button>
+            </div> -->
+          <!-- 
+            <div class="col text-center" id="createItem" style="display: none">
+              <button class="btn btn-primary mt-2">
+                <span class="ms-Button-label">import </span>
+              </button>
+            </div> -->
+          <div class="col-5 col-lg-2 text-center m-1" id="GetItem" style="display: none">
+            <button class="btn btn-primary mt-2">
+              <span class="ms-Button-label">Get Data </span>
+            </button>
+          </div>
+          <div class="col-5 col-lg-2 m-1 text-center" id="refresh" style="display: none">
+            <button class="btn btn-primary mt-2">
+              <span class="ms-Button-label">Refresh </span>
+            </button>
+          </div>
+          <button class="btn btn-primary col-5 col-lg-2 m-1" id="addrow" style="display: none">
+            <span class="ms-Button-label">Add Row </span>
+          </button>
+          <button class="btn btn-primary col-5 col-lg-2 m-1" id="add10row" style="display: none">
+            <span class="ms-Button-label">Add 10 Row </span>
+          </button>
+          <button class="btn btn-primary col-5 col-lg-2 m-1" id="clearRow" style="display: none">
+            <span class="ms-Button-label">Clear Row </span>
+          </button>
+          <button class="btn btn-danger col-5 col-lg-2 m-1" id="deleterow" style="display: none">
+            <span class="ms-Button-label">Delete Row </span>
+          </button>
+        </div>
+        <div id="module-nav" align="center" class="w-100 justify-content-center"></div>
+      </div>
+    </div>
+    <div class="mt-auto w-100 h-100 p-2 bd-highlight overflow-auto" id="main" style="display: none">
+      <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation" id="tab__model" style="display: none">
+          <button class="nav-link active" id="tab__Table_id__model" data-bs-toggle="tab" data-bs-target="#models"
+            type="button" role="tab" aria-controls="models" aria-selected="false">
+            Models
+          </button>
+        </li>
+        <li class="nav-item" role="presentation" id="tab__modelGrouph" style="display: none">
+          <button class="nav-link" id="tab__Table_id__modelGroup" data-bs-toggle="tab" data-bs-target="#modelgroups"
+            type="button" role="tab" aria-controls="modelgroups" aria-selected="false">
+            Groups
+          </button>
+        </li>
+
+        <li class="nav-item" role="presentation" id="tab__systemusersearch" style="display: none">
+          <button class="nav-link" id="tab__Table_id__systemusers" data-bs-toggle="tab"
+            data-bs-target="#systemusersearch" type="button" role="tab" aria-controls="systemusersearch"
+            aria-selected="false">
+            System User
+          </button>
+        </li>
+      </ul>
+      <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade" id="models" role="tabpanel" aria-labelledby="tab__Table_id__model">
+          <div class="d-flex w-75" style="position: fixed; bottom: -10px; left: 50%; transform: translate(-50%, -50%)">
+            <div class="col-12 text-center w-100" id="applyModel" style="">
+              <button class="btn btn-success w-100 mt-2 w-100 applyModel">
+                <span class="ms-Button-label">Apply</span>
+              </button>
+            </div>
+          </div>
+
+          <div style="height: 75vh; overflow-y: hidden">
+            <div class="d-flex flex-column mb-3 border w-100 h-100" style="height: 100vh; overflow-y: scroll">
+              <table id="benz_prototypemodeldesignation"></table>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="modelgroups" role="tabpanel" aria-labelledby="tab__Table_id__modelGroup">
+          <div class="d-flex w-75" style="position: fixed; bottom: -10px; left: 50%; transform: translate(-50%, -50%)">
+            <div class="col-12 text-center w-100" id="applyModel2" style="">
+              <button class="btn btn-success w-100 mt-2 w-100 applyModel">
+                <span class="ms-Button-label">Apply</span>
+              </button>
+            </div>
+          </div>
+
+          <div style="height: 75vh; overflow-y: hidden">
+            <div class="d-flex flex-column mb-3 border w-100 h-100" style="height: 100vh; overflow-y: scroll">
+              <table id="benz_prototypemodelgroup" style="width: 100%"></table>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-pane fade" id="systemusersearch" role="tabpanel" aria-labelledby="tab__Table_id__systemusers"
+          style="">
+          <div class="d-flex w-75" style="position: fixed; bottom: -10px; left: 50%; transform: translate(-50%, -50%)">
+            <div class="col-12 text-center w-100" id="applyModel" style="">
+              <button type="submit" class="btn btn-primary w-100 mt-2 w-100" id="systemusersearch_apply">
+                Apply
+              </button>
+            </div>
+          </div>
+
+          <div style="height: 75vh; overflow-y: hidden">
+            <!-- <label for="name">Name of Creater:</label> -->
+            <div class="row g-3">
+              <div class="col">
+                <div class="row g-3">
+                  <div class="col">
+                    <label for="user" class="mt-2">Name of Preparer: </label>
+                  </div>
+                </div>
+                <div class="row g-3">
+                  <div class="col">
+                    <input type="text" class="form-control form-control-plaintext border border-secondary"
+                      id="systemusersearch_search" value="" />
+                  </div>
+                  <div class="col">
+                    <button type="submit" class="btn btn-primary mb-3" id="systemusersearch_search">Search</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="systemusersearch_dataset" class="d-flex flex-column mb-3 border w-100 mh-75"
+              style="height: calc(100vh - 60px); overflow-y: scroll"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

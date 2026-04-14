@@ -1,0 +1,790 @@
+[
+    {
+        "mbhk": {
+            "main": [
+                {
+                    "label": "MBHK",
+                    "id": ""
+                },
+                {
+                    "label": "Preparer",
+                    "id": "benz_nameofpreparer"
+                },
+                {
+                    "label": "Department of Preparer",
+                    "id": "benz_department"
+                },
+                {
+                    "label": "Business unit of Preparer",
+                    "id": "benz_businessunit"
+                },
+                {
+                    "label": "Date of Submission",
+                    "id": "benz_lastupdatedate"
+                },
+                {
+                    "label": "Last update date",
+                    "id": "modifiedon"
+                },
+                {
+                    "label": "Memo type",
+                    "id": "benz_memotype"
+                },
+                {
+                    "label": "Require CEO Approval?",
+                    "id": "crc19_requireceoapproval"
+                },
+                {
+                    "label": "Memo ID",
+                    "id": "benz_name"
+                },
+                {
+                    "label": "Title",
+                    "id": "benz_memotitle"
+                }
+            ],
+            "fields": [
+                {
+                    "label": "Line item no #",
+                    "id": "benz_id"
+                },
+                {
+                    "label": "Inclusion model",
+                    "id": ""
+                },
+                {
+                    "label": "Inclusion model group",
+                    "id": ""
+                },
+                {
+                    "label": "Model year",
+                    "id": "benz_modelyear"
+                },
+                {
+                    "label": "Model exclusion",
+                    "id": "benz_exclusionmodel"
+                },
+                {
+                    "label": "Model exclusion group",
+                    "id": ""
+                },
+                {
+                    "label": "Exclusion model year",
+                    "id": "benz_exclusionmodelyear"
+                },
+                {
+                    "label": "Customer \nname",
+                    "id": "benz_customername"
+                },
+                {
+                    "label": "General offer / \nSpecific offer?",
+                    "id": "benz_generalofferspecificoffer"
+                },
+                {
+                    "label": "Commission No.",
+                    "id": "benz_commissionno"
+                },
+                {
+                    "label": "Support type ",
+                    "id": "benz_prototypesupporttype"
+                },
+                {
+                    "label": "Details",
+                    "id": "benz_details"
+                },
+                {
+                    "label": "Discount \npercentage",
+                    "id": "benz_discountpercentage"
+                },
+                {
+                    "label": "Retail price from",
+                    "id": "benz_retailpricefrom"
+                },
+                {
+                    "label": "Retail price to",
+                    "id": "benz_retailpriceto"
+                },
+                {
+                    "label": "Support per unit",
+                    "id": "benz_supportperunit"
+                },
+                {
+                    "label": " MBHK support per unit ",
+                    "id": "benz_mbhksupportperunit"
+                },
+                {
+                    "label": "MBHK share %",
+                    "id": "benz_mbhkshare"
+                },
+                {
+                    "label": " ZF support per unit ",
+                    "id": "benz_zfsupportperunit"
+                },
+                {
+                    "label": "ZF share %",
+                    "id": "benz_zfshare"
+                },
+                {
+                    "label": " MBFS support per unit ",
+                    "id": "benz_mbfssupportperunit"
+                },
+                {
+                    "label": "MBFS share %",
+                    "id": "benz_mbfsshare"
+                },
+                {
+                    "label": "Total share %",
+                    "id": "benz_totalshare"
+                },
+                {
+                    "label": "Share % validation",
+                    "id": "benz_sharevalidation"
+                },
+                {
+                    "label": "Total unit",
+                    "id": "benz_unit"
+                },
+                {
+                    "label": "Unit(s) for backlog",
+                    "id": "benz_unitsforbacklog"
+                },
+                {
+                    "label": "Share quota\n(input line item no. in Coumn A)",
+                    "id": "benz_sharequotano"
+                },
+                {
+                    "label": " Total MBHK support ",
+                    "id": "benz_totalmbhksupport"
+                },
+                {
+                    "label": " Total ZF support  ",
+                    "id": "benz_totalzfsupport"
+                },
+                {
+                    "label": " Total MBFS support ",
+                    "id": "benz_totalmbfssupport"
+                },
+                {
+                    "label": "Applicable pro. Year",
+                    "id": "benz_applicableproyear"
+                },
+                {
+                    "label": "MBHK remarks",
+                    "id": "benz_mbhkremarks"
+                },
+                {
+                    "label": "Remarks - Add quota",
+                    "id": "benz_remarksaddquota"
+                },
+                {
+                    "label": "Add quota for memo no.#",
+                    "id": "benz_addquotaformemono"
+                },
+                {
+                    "label": "In conjunction with ",
+                    "id": "benz_inconjunctionwith"
+                },
+                {
+                    "label": "Replace memo + item no*",
+                    "id": "benz_replacememoitemno"
+                },
+                {
+                    "label": "Effective date",
+                    "id": "benz_effectivedate"
+                },
+                {
+                    "label": "Old memo end date",
+                    "id": "benz_oldmemoenddate"
+                },
+                {
+                    "label": "Not in conjunction with",
+                    "id": "benz_notinconjunctionwith"
+                },
+                {
+                    "label": "Release Timeline",
+                    "id": "benz_releasetimeline"
+                },
+                {
+                    "label": "Long-term Measure",
+                    "id": "benz_longtermmeasure"
+                },
+                {
+                    "label": "Remarks - MBHK attachment upload",
+                    "id": "benz_remarksmbhkattachmentupload"
+                },
+                {
+                    "label": "MBHK Attachment upload (MBHK only)",
+                    "id": "benz_remarkszfattachmentuploadmbhkview"
+                },
+                {
+                    "label": "MBHK Sales Remarks",
+                    "id": "benz_mbhksalesremarks"
+                },
+                {
+                    "label": "Unit for Claim's validation",
+                    "id": "benz_unitexceed"
+                },
+                {
+                    "label": "MBHK support Per unit for Claim's validation",
+                    "id": "benz_mbhksupportperunitexceed"
+                },
+                {
+                    "label": "MBHK total support amt \nfor Claim's validation",
+                    "id": "benz_mbhktotalsupportamtexceed"
+                },
+                {
+                    "label": "Measure Purpose",
+                    "id": "benz_measurepurpose"
+                },
+                {
+                    "label": "Remarks for Claim",
+                    "id": "benz_remarksforclaim"
+                },
+                {
+                    "label": "Contract Date From",
+                    "id": "benz_contractdate"
+                },
+                {
+                    "label": "Contract Date to",
+                    "id": "benz_contractdateto"
+                },
+                {
+                    "label": "Licensed By",
+                    "id": "benz_licensedby"
+                }
+            ]
+        },
+        "zf": {
+            "main": [
+                {
+                    "label": "MBZF",
+                    "id": ""
+                },
+                {
+                    "label": "Preparer",
+                    "id": "benz_nameofpreparer"
+                },
+                {
+                    "label": "Department of Preparer",
+                    "id": "benz_department"
+                },
+                {
+                    "label": "Business unit of Preparer",
+                    "id": "benz_businessunit"
+                },
+                {
+                    "label": "Date of Submission",
+                    "id": "benz_lastupdatedate"
+                },
+                {
+                    "label": "Last update date",
+                    "id": "modifiedon"
+                },
+                {
+                    "label": "Require CEO Approval?",
+                    "id": "crc19_requireceoapproval"
+                },
+                {
+                    "label": "Memo ID",
+                    "id": "benz_name"
+                },
+                {
+                    "label": "Title",
+                    "id": "benz_memotitle"
+                },
+                {
+                    "label": "Memo number (Type)",
+                    "id": "benz_memonumbertype"
+                },
+                {
+                    "label": "Memo number (Year)",
+                    "id": "benz_memonoyear"
+                },
+                {
+                    "label": "Memo number (Month)",
+                    "id": "benz_memonomonth"
+                },
+                {
+                    "label": "Memo number (Serial No.)",
+                    "id": "benz_memonoserialno"
+                }
+            ],
+            "fields": [
+                {
+                    "label": "Line item no #",
+                    "id": "benz_id"
+                },
+                {
+                    "label": "Inclusion model",
+                    "id": ""
+                },
+                {
+                    "label": "Inclusion model group",
+                    "id": ""
+                },
+                {
+                    "label": "Model year",
+                    "id": "benz_modelyear"
+                },
+                {
+                    "label": "Model exclusion",
+                    "id": "benz_exclusionmodel"
+                },
+                {
+                    "label": "Model exclusion group",
+                    "id": ""
+                },
+                {
+                    "label": "Exclusion model year",
+                    "id": "benz_exclusionmodelyear"
+                },
+                {
+                    "label": "General offer / \nSpecific offer?",
+                    "id": "benz_generalofferspecificoffer"
+                },
+                {
+                    "label": "Commission No.",
+                    "id": "benz_commissionno"
+                },
+                {
+                    "label": "Support type",
+                    "id": "benz_prototypesupporttype"
+                },
+                {
+                    "label": "Details",
+                    "id": "benz_details"
+                },
+                {
+                    "label": "Retail price from",
+                    "id": "benz_retailpricefrom"
+                },
+                {
+                    "label": "Retail price to",
+                    "id": "benz_retailpriceto"
+                },
+                {
+                    "label": "Support per unit",
+                    "id": "benz_supportperunit"
+                },
+                {
+                    "label": " MBHK support per unit ",
+                    "id": "benz_mbhksupportperunit"
+                },
+                {
+                    "label": "MBHK share %",
+                    "id": "benz_mbhkshare"
+                },
+                {
+                    "label": " ZF support per unit ",
+                    "id": "benz_zfsupportperunit"
+                },
+                {
+                    "label": "ZF share %",
+                    "id": "benz_zfshare"
+                },
+                {
+                    "label": " MBFS support per unit ",
+                    "id": "benz_mbfssupportperunit"
+                },
+                {
+                    "label": "MBFS share %",
+                    "id": "benz_mbfsshare"
+                },
+                {
+                    "label": "Total share %",
+                    "id": "benz_totalshare"
+                },
+                {
+                    "label": "Share % validation",
+                    "id": "benz_sharevalidation"
+                },
+                {
+                    "label": "Total unit",
+                    "id": "benz_unit"
+                },
+                {
+                    "label": "Unit(s) for backlog",
+                    "id": "benz_unitsforbacklog"
+                },
+                {
+                    "label": "Share quota\n(input line item no. in Coumn A)",
+                    "id": "benz_sharequotano"
+                },
+                {
+                    "label": " Total MBHK support ",
+                    "id": "benz_totalmbhksupport"
+                },
+                {
+                    "label": " Total ZF support  ",
+                    "id": "benz_totalzfsupport"
+                },
+                {
+                    "label": " Total MBFS support ",
+                    "id": "benz_totalmbfssupport"
+                },
+                {
+                    "label": "Applicable pro. Year",
+                    "id": "benz_applicableproyear"
+                },
+                {
+                    "label": "ZF remarks",
+                    "id": "benz_zfremarks"
+                },
+                {
+                    "label": "Remarks - Add quota",
+                    "id": "benz_remarksaddquota"
+                },
+                {
+                    "label": "Add quota for memo no.#",
+                    "id": "benz_addquotaformemono"
+                },
+                {
+                    "label": "In conjunction with ",
+                    "id": "benz_inconjunctionwith"
+                },
+                {
+                    "label": "Replace memo + item no*",
+                    "id": "benz_replacememoitemno"
+                },
+                {
+                    "label": "Effective date",
+                    "id": "benz_effectivedate"
+                },
+                {
+                    "label": "Old memo end date",
+                    "id": "benz_oldmemoenddate"
+                },
+                {
+                    "label": "Not in conjunction with",
+                    "id": "benz_notinconjunctionwith"
+                },
+                {
+                    "label": "Release Timeline",
+                    "id": "benz_releasetimeline"
+                },
+                {
+                    "label": "Long-term Measure",
+                    "id": "benz_longtermmeasure"
+                },
+                {
+                    "label": "MBHK Attachment upload (MBHK only)",
+                    "id": "benz_remarkszfattachmentuploadmbhkview"
+                },
+                {
+                    "label": "MBHK Sales Remarks",
+                    "id": "benz_mbhksalesremarks"
+                },
+                {
+                    "label": "Unit for Claim's validation",
+                    "id": "benz_unitexceed"
+                },
+                {
+                    "label": "MBHK support Per unit for Claim's validation",
+                    "id": "benz_mbhksupportperunitexceed"
+                },
+                {
+                    "label": "MBHK total support amt \nfor Claim's validation",
+                    "id": "benz_mbhktotalsupportamtexceed"
+                },
+                {
+                    "label": "Measure Purpose",
+                    "id": "benz_measurepurpose"
+                },
+                {
+                    "label": "Remarks for Claim",
+                    "id": "benz_remarksforclaim"
+                },
+                {
+                    "label": "Contract Date From",
+                    "id": "benz_contractdate"
+                },
+                {
+                    "label": "Contract Date to",
+                    "id": "benz_contractdateto"
+                },
+                {
+                    "label": "Licensed By",
+                    "id": "benz_licensedby"
+                }
+            ]
+        },
+        "mbfs": {
+            "main": [
+                {
+                    "label": "MBFS",
+                    "id": ""
+                },
+                {
+                    "label": "Preparer",
+                    "id": "benz_nameofpreparer"
+                },
+                {
+                    "label": "Department of Preparer",
+                    "id": "benz_department"
+                },
+                {
+                    "label": "Business unit of Preparer",
+                    "id": "benz_businessunit"
+                },
+                {
+                    "label": "Date of Submission",
+                    "id": "benz_lastupdatedate"
+                },
+                {
+                    "label": "Last update date",
+                    "id": "modifiedon"
+                },
+                {
+                    "label": "For MBHK & MBFS only?",
+                    "id": "benz_formbhkmbfsonly"
+                },
+                {
+                    "label": "Require CEO Approval?",
+                    "id": "crc19_requireceoapproval"
+                },
+                {
+                    "label": "Memo ID",
+                    "id": "benz_name"
+                },
+                {
+                    "label": "Title",
+                    "id": "benz_memotitle"
+                },
+                {
+                    "label": "Memo number (Type)",
+                    "id": "benz_memonumbertype"
+                },
+                {
+                    "label": "Memo number (Year)",
+                    "id": "benz_memonoyear"
+                },
+                {
+                    "label": "Memo number (Month)",
+                    "id": "benz_memonomonth"
+                },
+                {
+                    "label": "Memo number (Serial No.)",
+                    "id": "benz_memonoserialno"
+                }
+            ],
+            "fields": [
+                {
+                    "label": "Line item no #",
+                    "id": "benz_id"
+                },
+                {
+                    "label": "Inclusion model",
+                    "id": ""
+                },
+                {
+                    "label": "Inclusion model group",
+                    "id": ""
+                },
+                {
+                    "label": "Model year",
+                    "id": "benz_modelyear"
+                },
+                {
+                    "label": "Model exclusion",
+                    "id": "benz_exclusionmodel"
+                },
+                {
+                    "label": "Model exclusion group",
+                    "id": ""
+                },
+                {
+                    "label": "Exclusion model year",
+                    "id": "benz_exclusionmodelyear"
+                },
+                {
+                    "label": "General offer / \nSpecific offer?",
+                    "id": "benz_generalofferspecificoffer"
+                },
+                {
+                    "label": "Commission No.",
+                    "id": "benz_commissionno"
+                },
+                {
+                    "label": "Finance Product",
+                    "id": "benz_financetype"
+                },
+                {
+                    "label": "Details",
+                    "id": "benz_details"
+                },
+                {
+                    "label": "ZF share %",
+                    "id": "benz_discountpercentage"
+                },
+                {
+                    "label": "Retail price from",
+                    "id": "benz_retailpricefrom"
+                },
+                {
+                    "label": "Retail price to",
+                    "id": "benz_retailpriceto"
+                },
+                {
+                    "label": "Support per unit",
+                    "id": "benz_supportperunit"
+                },
+                {
+                    "label": " MBHK support per unit ",
+                    "id": "benz_mbhksupportperunit"
+                },
+                {
+                    "label": "MBHK share %",
+                    "id": "benz_mbhkshare"
+                },
+                {
+                    "label": " ZF support per unit ",
+                    "id": "benz_zfsupportperunit"
+                },
+                {
+                    "label": "ZF share %",
+                    "id": "benz_zfshare"
+                },
+                {
+                    "label": " MBFS support per unit ",
+                    "id": "benz_mbfssupportperunit"
+                },
+                {
+                    "label": "MBFS share %",
+                    "id": "benz_mbfsshare"
+                },
+                {
+                    "label": "Total share %",
+                    "id": "benz_totalshare"
+                },
+                {
+                    "label": "Share % validation",
+                    "id": "benz_sharevalidation"
+                },
+                {
+                    "label": "Total unit",
+                    "id": "benz_unit"
+                },
+                {
+                    "label": "Unit(s) for backlog",
+                    "id": "benz_unitsforbacklog"
+                },
+                {
+                    "label": "Share quota\n(input line item no. in Coumn A)",
+                    "id": "benz_sharequotano"
+                },
+                {
+                    "label": " Total MBHK support ",
+                    "id": "benz_totalmbhksupport"
+                },
+                {
+                    "label": " Total ZF support  ",
+                    "id": "benz_totalzfsupport"
+                },
+                {
+                    "label": " Total MBFS support ",
+                    "id": "benz_totalmbfssupport"
+                },
+                {
+                    "label": "Applicable pro. Year",
+                    "id": "benz_applicableproyear"
+                },
+                {
+                    "label": "MBFS Remarks",
+                    "id": "benz_mbfsremarks"
+                },
+                {
+                    "label": "Remarks - Add quota",
+                    "id": "benz_remarksaddquota"
+                },
+                {
+                    "label": "Add quota for memo no.#",
+                    "id": "benz_addquotaformemono"
+                },
+                {
+                    "label": "In conjunction with ",
+                    "id": "benz_inconjunctionwith"
+                },
+                {
+                    "label": "Replace memo + item no*",
+                    "id": "benz_replacememoitemno"
+                },
+                {
+                    "label": "Effective date",
+                    "id": "benz_effectivedate"
+                },
+                {
+                    "label": "Old memo end date",
+                    "id": "benz_oldmemoenddate"
+                },
+                {
+                    "label": "Not in conjunction with",
+                    "id": "benz_notinconjunctionwith"
+                },
+                {
+                    "label": "Release Timeline",
+                    "id": "benz_releasetimeline"
+                },
+                {
+                    "label": "Long-term Measure",
+                    "id": "benz_longtermmeasure"
+                },
+                {
+                    "label": "Remarks - MBFS Attachment upload",
+                    "id": "benz_remarksmbfsattachmentupload"
+                },
+                {
+                    "label": "MBHK Attachment upload (MBHK only)",
+                    "id": "benz_remarkszfattachmentuploadmbhkview"
+                },
+                {
+                    "label": "MBHK Sales Remarks",
+                    "id": "benz_mbhksalesremarks"
+                },
+                {
+                    "label": "Unit for Claim's validation",
+                    "id": "benz_unitexceed"
+                },
+                {
+                    "label": "MBHK support Per unit for Claim's validation",
+                    "id": "benz_mbhksupportperunitexceed"
+                },
+                {
+                    "label": "MBHK total support amt \nfor Claim's validation",
+                    "id": "benz_mbhktotalsupportamtexceed"
+                },
+                {
+                    "label": "Measure Purpose",
+                    "id": "benz_measurepurpose"
+                },
+                {
+                    "label": "Remarks for Claim",
+                    "id": "benz_remarksforclaim"
+                },
+                {
+                    "label": "Contract Date From",
+                    "id": "benz_contractdate"
+                },
+                {
+                    "label": "Contract Date to",
+                    "id": "benz_contractdateto"
+                },
+                {
+                    "label": "Licensed By",
+                    "id": "benz_licensedby"
+                },
+                {
+                    "label": "Application Date\nFrom",
+                    "id": "benz_applicationdatefrom"
+                },
+                {
+                    "label": "Application Date\nTo",
+                    "id": "benz_applicationdateto"
+                },
+                {
+                    "label": "FS Contract \nActivation by",
+                    "id": "benz_fscontractactivationby"
+                }
+            ]
+        }
+    }
+]

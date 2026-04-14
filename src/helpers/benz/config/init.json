@@ -1,0 +1,335 @@
+{
+    "applyString": {
+        "benz_prototypemodeldesignation": "benz_name",
+        "benz_prototypemodelgroup": "benz_name",
+        "benz_fsproduct": "benz_name"
+    },
+    "applyStringformat": "",
+    "user": {
+        "info": {
+            "entitySet": "systemusers",
+            "queryString": "?$select=systemuserid,internalemailaddress,businessunitid&$filter=azureactivedirectoryobjectid eq '{value}'&$expand=systemuserroles_association($select=name),teammembership_association($select=name)",
+            "queryOptions": ""
+        },
+        "teams": {
+            "entitySet": "teams",
+            "queryString": "?$filter=Microsoft.Dynamics.CRM.In(PropertyName=@p1,PropertyValues=@p2)&@p1='name'&@p2=[{value}]&$expand=teamroles_association($select=name)",
+            "queryOptions": ""
+        }
+    },
+    "forms": [
+        {
+            "id": "sm-mbhk",
+            "module": "sm",
+            "company": "mbhk"
+        },
+        {
+            "id": "sm-mbfs",
+            "module": "sm",
+            "company": "mbfs"
+        },
+        {
+            "id": "sm-zf_hk",
+            "module": "sm",
+            "company": "zf_hk"
+        },
+        {
+            "id": "sm-zf_mk",
+            "module": "sm",
+            "company": "zf_mk"
+        },
+        {
+            "id": "claim-mbfs",
+            "module": "claim",
+            "company": "mbfs"
+        },
+        {
+            "id": "sm-zf_hk",
+            "module": "claim",
+            "company": "zf_hk"
+        },
+        {
+            "id": "sm-zf_mk",
+            "module": "claim",
+            "company": "zf_mk"
+        }
+    ],
+    "init_object": [
+        {
+            "index": 0,
+            "key": "table_benz_supporttype",
+            "entitySet": "benz_supporttypes",
+            "queryString": "$select=benz_supporttypeid,benz_name&$orderby=benz_priority asc",
+            "queryOptions": "",
+            "fields": [
+                "benz_supporttypeid",
+                "benz_name"
+            ],
+            "Type": "choices",
+            "oType": "table"
+        },
+        {
+            "index": 10,
+            "key": "table_benz_supporttype",
+            "entitySet": "benz_supporttypes",
+            "queryString": "$select=benz_supporttypeid,benz_name&$orderby=benz_priority asc",
+            "queryOptions": "",
+            "fields": [
+                "benz_supporttypeid",
+                "benz_name"
+            ],
+            "Type": "choices",
+            "oType": "table"
+        },
+        {
+            "index": 20,
+            "key": "TypeClasses",
+            "entitySet": "benz_prototypemodeldesignationtypeclasses",
+            "queryString": "$select=benz_prototypemodeldesignationtypeclassid,benz_typeclass",
+            "queryOptions": "",
+            "fields": [
+                "benz_prototypemodeldesignationtypeclassid",
+                "benz_typeclass"
+            ],
+            "Type": "choices",
+            "oType": "table"
+        },
+        {
+            "index": 30,
+            "key": "benz_prototypemodeldesignation",
+            "entitySet": "benz_prototypemodeldesignations",
+            "queryString": "$select=benz_prototypemodeldesignationid,benz_name,_benz_prototypemodeldesignationtypeclass_value,benz_amgmaybachna,benz_icebevhybrid",
+            "queryOptions": "",
+            "fields": [
+                "benz_prototypemodeldesignationid",
+                "benz_name"
+            ],
+            "columns": [
+                "benz_name",
+                "_benz_prototypemodeldesignationtypeclass_value@OData.Community.Display.V1.FormattedValue",
+                "benz_icebevhybrid@OData.Community.Display.V1.FormattedValue",
+                "benz_amgmaybachna@OData.Community.Display.V1.FormattedValue"
+            ],
+            "searchPanes": true,
+            "Type": "table",
+            "oType": "table"
+        },
+        {
+            "index": 40,
+            "key": "benz_prototypemodelgroup",
+            "entitySet": "benz_prototypemodelgroups",
+            "queryString": "$select=benz_prototypemodelgroupid,benz_name",
+            "queryOptions": "",
+            "fields": [
+                "benz_prototypemodelgroupid",
+                "benz_name"
+            ],
+            "columns": [
+                "benz_name"
+            ],
+            "searchPanes": false,
+            "Type": "table",
+            "oType": "table"
+        },
+        {
+            "index": 50,
+            "key": "benz_generalofferspecificoffer",
+            "entitySet": "EntityDefinitions(LogicalName='benz_prototypesalesmeasure')/Attributes(LogicalName='benz_generalofferspecificoffer')/Microsoft.Dynamics.CRM.PicklistAttributeMetadata",
+            "queryString": "?$select=LogicalName&$expand=OptionSet($select=Options)",
+            "queryOptions": "",
+            "Type": "choices",
+            "oType": "choices"
+        },
+        {
+            "index": 60,
+            "key": "benz_memotypeformbhk",
+            "entitySet": "EntityDefinitions(LogicalName='benz_prototypesalesmeasuremainform')/Attributes(LogicalName='benz_memotypeformbhk')/Microsoft.Dynamics.CRM.PicklistAttributeMetadata",
+            "queryString": "?$select=LogicalName&$expand=OptionSet($select=Options)",
+            "queryOptions": "",
+            "Type": "choices",
+            "oType": "choices"
+        },
+        {
+            "index": 70,
+            "key": "benz_memotypeformbfs",
+            "entitySet": "EntityDefinitions(LogicalName='benz_prototypesalesmeasuremainform')/Attributes(LogicalName='benz_memotypeformbfs')/Microsoft.Dynamics.CRM.PicklistAttributeMetadata",
+            "queryString": "?$select=LogicalName&$expand=OptionSet($select=Options)",
+            "queryOptions": "",
+            "Type": "choices",
+            "oType": "choices"
+        },
+        {
+            "index": 80,
+            "key": "benz_memotypeforzf",
+            "entitySet": "EntityDefinitions(LogicalName='benz_prototypesalesmeasuremainform')/Attributes(LogicalName='benz_memotypeforzf')/Microsoft.Dynamics.CRM.PicklistAttributeMetadata",
+            "queryString": "?$select=LogicalName&$expand=OptionSet($select=Options)",
+            "queryOptions": "",
+            "Type": "choices",
+            "oType": "choices"
+        },
+        {
+            "index": 90,
+            "key": "benz_departmentofpreparer",
+            "entitySet": "EntityDefinitions(LogicalName='benz_prototypesalesmeasuremainform')/Attributes(LogicalName='benz_departmentofpreparer')/Microsoft.Dynamics.CRM.PicklistAttributeMetadata",
+            "queryString": "?$select=LogicalName&$expand=OptionSet($select=Options)",
+            "queryOptions": "",
+            "Type": "choices",
+            "oType": "choices"
+        },
+        {
+            "index": 90,
+            "key": "benz_businessunitofpreparer",
+            "entitySet": "EntityDefinitions(LogicalName='benz_prototypesalesmeasuremainform')/Attributes(LogicalName='benz_businessunitofpreparer')/Microsoft.Dynamics.CRM.PicklistAttributeMetadata",
+            "queryString": "?$select=LogicalName&$expand=OptionSet($select=Options)",
+            "queryOptions": "",
+            "Type": "choices",
+            "oType": "choices"
+        },
+        {
+            "index": 90,
+            "key": "benz_companyname",
+            "entitySet": "EntityDefinitions(LogicalName='benz_prototypesalesmeasuremainform')/Attributes(LogicalName='benz_companyname')/Microsoft.Dynamics.CRM.PicklistAttributeMetadata",
+            "queryString": "?$select=LogicalName&$expand=OptionSet($select=Options)",
+            "queryOptions": "",
+            "Type": "choices",
+            "oType": "choices"
+        },
+        {
+            "index": 90,
+            "key": "benz_supporttype",
+            "entitySet": "EntityDefinitions(LogicalName='benz_prototypeclaimitem')/Attributes(LogicalName='benz_supporttype')/Microsoft.Dynamics.CRM.PicklistAttributeMetadata",
+            "queryString": "?$select=LogicalName&$expand=OptionSet($select=Options)",
+            "queryOptions": "",
+            "Type": "choices",
+            "oType": "choices"
+        },
+        {
+            "index": 100,
+            "key": "benz_financetype",
+            "entitySet": "benz_financeproducts",
+            "queryString": "$select=benz_financeproductid,benz_name",
+            "queryOptions": "",
+            "fields": [
+                "benz_financeproductid",
+                "benz_name"
+            ],
+            "Type": "choices",
+            "oType": "table"
+        },
+        {
+            "index": 110,
+            "key": "benz_submitto",
+            "entitySet": "EntityDefinitions(LogicalName='benz_prototypeclaimitemmainform')/Attributes(LogicalName='benz_submitto')/Microsoft.Dynamics.CRM.PicklistAttributeMetadata",
+            "queryString": "?$select=LogicalName&$expand=OptionSet($select=Options)",
+            "queryOptions": "",
+            "Type": "choices",
+            "oType": "choices"
+        },
+        {
+            "index": 90,
+            "key": "benz_memotype",
+            "entitySet": "benz_memotypes",
+            "queryString": "$select=benz_memotypeid,benz_name",
+            "queryOptions": "",
+            "fields": [
+                "benz_memotypeid",
+                "benz_name"
+            ],
+            "Type": "choices",
+            "oType": "table"
+        },
+        {
+            "index": 90,
+            "key": "benz_memotype_mbhk",
+            "entitySet": "benz_memotypes",
+            "queryString": "$select=benz_memotypeid,benz_name&$filter=benz_bu eq 'MBHK'",
+            "queryOptions": "",
+            "fields": [
+                "benz_memotypeid",
+                "benz_name"
+            ],
+            "Type": "choices",
+            "oType": "table"
+        },
+        {
+            "index": 90,
+            "key": "benz_memotype_zfmk",
+            "entitySet": "benz_memotypes",
+            "queryString": "$select=benz_memotypeid,benz_name&$filter=benz_bu eq 'ZF_MK'",
+            "queryOptions": "",
+            "fields": [
+                "benz_memotypeid",
+                "benz_name"
+            ],
+            "Type": "choices",
+            "oType": "table"
+        },
+        {
+            "index": 90,
+            "key": "benz_memotype_zfhk",
+            "entitySet": "benz_memotypes",
+            "queryString": "$select=benz_memotypeid,benz_name&$filter=benz_bu eq 'ZF_HK'",
+            "queryOptions": "",
+            "fields": [
+                "benz_memotypeid",
+                "benz_name"
+            ],
+            "Type": "choices",
+            "oType": "table"
+        },
+        {
+            "index": 90,
+            "key": "benz_memotype_mbfs",
+            "entitySet": "benz_memotypes",
+            "queryString": "$select=benz_memotypeid,benz_name&$filter=benz_bu eq 'MBFS'",
+            "queryOptions": "",
+            "fields": [
+                "benz_memotypeid",
+                "benz_name"
+            ],
+            "Type": "choices",
+            "oType": "table"
+        },
+        {
+            "index": 120,
+            "key": "benz_formbhkmbfsonly",
+            "entitySet": "EntityDefinitions(LogicalName='benz_prototypesalesmeasuremainform')/Attributes(LogicalName='benz_formbhkmbfsonly')/Microsoft.Dynamics.CRM.PicklistAttributeMetadata",
+            "queryString": "?$select=LogicalName&$expand=OptionSet($select=Options)",
+            "queryOptions": "",
+            "Type": "choices",
+            "oType": "choices"
+        },
+        {
+            "index": 130,
+            "key": "benz_fsproduct",
+            "entitySet": "benz_fsproducts",
+            "queryString": "$select=benz_fsproductid,benz_name,benz_nameoffinanceproduct,_benz_financeproduct_value",
+            "queryOptions": "",
+            "fields": [
+                "benz_fsproductid",
+                "benz_name"
+            ],
+            "columns": [
+                "benz_name",
+                "benz_nameoffinanceproduct",
+                "_benz_financeproduct_value"
+            ],
+            "searchPanes": true,
+            "Type": "table",
+            "oType": "table"
+        },
+        {
+            "index": 140,
+            "key": "environmentvariablevalues",
+            "entitySet": "environmentvariablevalues",
+            "queryString": "$select=schemaname,value&$filter=startswith(EnvironmentVariableDefinitionId/schemaname , 'benz_excel_')",
+            "queryOptions": "",
+            "fields": [
+                "value"
+            ],
+            "searchPanes": true,
+            "Type": "environmentvariablevalues",
+            "oType": "environmentvariablevalues"
+        }
+    ]
+}
