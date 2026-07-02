@@ -828,6 +828,10 @@ export abstract class FormAction {
       console.log("map related_Data res");
       console.log(res);
 
+      console.log("Pausing for 10 seconds before finalizing data hooks...");
+      const sleep = (ms: number) => new Promise((resolve) => global.setTimeout(resolve, ms));
+      await sleep(10000);
+
       await this.afterPostData();
       await this._afterPostData();
       global.CurrentConfig.action = action.update;
