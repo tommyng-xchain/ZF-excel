@@ -1325,38 +1325,74 @@ export async function ConvertToKey(oitems: any[], config: FormConfig): Promise<o
               }
 
               if (!lookupid && value && target.LookupAllowUsingExist) {
-                global.Callapiaction = {
-                  name: "callapiaction",
-                  action: {
+                if (target.LogicalName == "benz_claimfinanceproduct") {
+
+                  let val = value.toString().trim(); // "Agility +"
+                  if (relationship.querys[0].getvalueregex) {
+                    const regex = RegExp(relationship.querys[0].getvalueregex, "g");
+                    const match = regex.exec(value.toString());
+                    if (match) val = match[0];
+                  }
+
+                  // Swap the standard '+' for a literal Unicode Full-Width Plus Sign '＋'
+                  // No percent signs are used here, so the library cannot double-encode it!
+                  const safeVal = val.replace(/\+/g, "＋");
+
+                  const structuredQuery = relationship.querys[0].queryString.replace("{valueAfters}", safeVal);
+
+                  global.Callapiaction = {
+                    name: "callapiaction",
+                    action: {
+                      entitySet: relationship.querys[0].EntityLogicalName,
+                      queryString: structuredQuery,
+                      queryOptions: "",
+                    },
+                  };
+
+                  const res = await datahelper.RetrieveAndReturnMultipleData(null, {
+                    entitySet: relationship.querys[0].EntityLogicalName,
+                    queryString: structuredQuery,
+                    queryOptions: "",
+                  });
+
+                  console.log(res);
+                  if (res && res.value && res.value.length > 0) {
+                    lookupid = res.value[0][`${relationship.to_LogicalName}id`];
+                  }
+                } else {
+                  global.Callapiaction = {
+                    name: "callapiaction",
+                    action: {
+                      entitySet: relationship.querys[0].EntityLogicalName,
+                      queryString: relationship.querys[0].queryString.replace("{valueAfters}", val),
+                      queryOptions: "",
+                    },
+                  };
+                  const res = await datahelper.RetrieveAndReturnMultipleData(null, {
                     entitySet: relationship.querys[0].EntityLogicalName,
                     queryString: relationship.querys[0].queryString.replace("{valueAfters}", val),
                     queryOptions: "",
-                  },
-                };
-                const res = await datahelper.RetrieveAndReturnMultipleData(null, {
-                  entitySet: relationship.querys[0].EntityLogicalName,
-                  queryString: relationship.querys[0].queryString.replace("{valueAfters}", val),
-                  queryOptions: "",
-                });
-                console.log(res);
-                if (res) {
-                  if (res.value.length > 0) {
-                    lookupid = res.value[0][`${relationship.to_LogicalName}id`];
-                  } else {
-                    if (target.LogicalName == "benz_modeldesignation") {
-                      console.log("global.choicesSets");
-                      console.log(global.choicesSets);
-                      console.log(global.choicesSets[target.LookupEntityLogicalName]);
-                      var modelSets = global.choicesSets[target.LookupEntityLogicalName];
-                      var currentModelSet = [];
-                      for (let modelSet of modelSets) {
-                        if (modelSet.name == val) {
-                          currentModelSet = modelSet;
-                          break;
+                  });
+                  console.log(res);
+                  if (res) {
+                    if (res.value.length > 0) {
+                      lookupid = res.value[0][`${relationship.to_LogicalName}id`];
+                    } else {
+                      if (target.LogicalName == "benz_modeldesignation") {
+                        console.log("global.choicesSets");
+                        console.log(global.choicesSets);
+                        console.log(global.choicesSets[target.LookupEntityLogicalName]);
+                        var modelSets = global.choicesSets[target.LookupEntityLogicalName];
+                        var currentModelSet = [];
+                        for (let modelSet of modelSets) {
+                          if (modelSet.name == val) {
+                            currentModelSet = modelSet;
+                            break;
+                          }
                         }
+                        console.log(currentModelSet);
+                        lookupid = currentModelSet["id"];
                       }
-                      console.log(currentModelSet);
-                      lookupid = currentModelSet["id"];
                     }
                   }
                 }
