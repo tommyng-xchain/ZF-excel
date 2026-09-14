@@ -64,7 +64,7 @@ async function isVailds(args: changeArgs, config: FormConfig) {
       }
     }
     if(results.length == 0){
-      if(colconf.mandatory && args['details'].valueAfter == ""){
+      if(colconf.mandatory && args['details'].valueAfter === ""){
         result = false;
         results.push(result);
       }
