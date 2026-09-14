@@ -3,17 +3,17 @@ import { BENZ } from "./factory";
 export enum AppMode {
   /**
    * @remarks
-   *
+   * 
    */
   UAT = "uat",
   /**
    * @remarks
-   *
+   * 
    */
   MIGRATION = "migration",
   /**
    * @remarks
-   *
+   * 
    */
   PRODUCTION = "production",
 }
@@ -271,7 +271,6 @@ export type TableColumns = {
   fixedValue?: string;
   isFormula?: boolean;
   canPass?: boolean;
-  defalutValues?: string;
   setToString?: boolean;
   MemoNameGen?: boolean;
   useEnvironmentVaule?: string;

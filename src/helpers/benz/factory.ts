@@ -1645,7 +1645,11 @@ export async function Get_main_Data(id) {
   } else {
     modelIdName = "Claim ID";
   }
-  var statusChecking = " and (benz_formstatus eq 650230000 or benz_formstatus eq 650230001 or benz_formstatus eq 650230002 or benz_formstatus eq null)";
+  var statusChecking = " and (benz_formstatus eq 650230000 or benz_formstatus eq 650230002 or benz_formstatus eq null)";
+  if (global.CurrentConfig.module.includes("CLAIM")) {
+    statusChecking = " and (benz_formstatus eq 650230000 or benz_formstatus eq 650230001 or benz_formstatus eq 650230002 or benz_formstatus eq null)";
+  }
+
   try {
     global.Callapiaction = {
       name: "callapiaction",
@@ -1694,7 +1698,8 @@ export async function Get_items_Data(config, mainid) {
   console.log(`on ${config.module} get items data...`);
   var statusChecking = "";
   if (global.CurrentConfig.module.includes("CLAIM")) {
-    statusChecking = " and (benz_claimapprovalstatus eq 650230008 or benz_claimapprovalstatus eq null)";
+    // statusChecking = " and (benz_claimapprovalstatus eq 650230008 or benz_claimapprovalstatus eq null)";
+    statusChecking = " and (benz_claimapprovalstatus eq 650230008 or (benz_claimitemstatus eq 650230000 and benz_claimapprovalstatus eq null))";
   }
   try {
     global.Callapiaction = {

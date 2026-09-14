@@ -1,23 +1,23 @@
 {
-    "applyString": {
-        "benz_prototypemodeldesignation": "benz_name",
-        "benz_prototypemodelgroup": "benz_name",
-        "benz_fsproduct": "benz_name"
+    "applyString":{
+        "benz_prototypemodeldesignation":"benz_name",
+        "benz_prototypemodelgroup":"benz_name",
+        "benz_fsproduct":"benz_name"
     },
     "applyStringformat": "",
     "user": {
-        "info": {
+        "info":  {
             "entitySet": "systemusers",
             "queryString": "?$select=systemuserid,internalemailaddress,businessunitid&$filter=azureactivedirectoryobjectid eq '{value}'&$expand=systemuserroles_association($select=name),teammembership_association($select=name)",
             "queryOptions": ""
         },
-        "teams": {
+        "teams":  {
             "entitySet": "teams",
             "queryString": "?$filter=Microsoft.Dynamics.CRM.In(PropertyName=@p1,PropertyValues=@p2)&@p1='name'&@p2=[{value}]&$expand=teamroles_association($select=name)",
             "queryOptions": ""
         }
     },
-    "forms": [
+    "forms":[
         {
             "id": "sm-mbhk",
             "module": "sm",
@@ -109,6 +109,7 @@
                 "_benz_prototypemodeldesignationtypeclass_value@OData.Community.Display.V1.FormattedValue",
                 "benz_icebevhybrid@OData.Community.Display.V1.FormattedValue",
                 "benz_amgmaybachna@OData.Community.Display.V1.FormattedValue"
+
             ],
             "searchPanes": true,
             "Type": "table",

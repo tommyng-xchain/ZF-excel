@@ -6,7 +6,7 @@ const nodeExternals = require("webpack-node-externals");
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
 const urlDev = "https://localhost:3000/";
-const urlProd = "https://www.Benz.com/"; // CHANGE THIS TO YOUR PRODUCTION DEPLOYMENT LOCATION
+const urlProd = "https://mbhksalesmeasures.z7.web.core.windows.net/"; // CHANGE THIS TO YOUR PRODUCTION DEPLOYMENT LOCATION
 
 module.exports = async (env, options) => {
   const dev = options.mode === "development";

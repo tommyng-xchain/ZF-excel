@@ -40,36 +40,13 @@ export class FORM {
       let sheetname = (await utils.getActiveWorksheet()).split("-");
       console.log(`${sheetname[0].toLocaleLowerCase()}`);
       return require(`./${sheetname[0].toLocaleLowerCase()}/${sheetname[1].toLocaleLowerCase()}/init`).config;
-      // return this.merge_env_var_to_Conf(
-      //   require(`./${sheetname[0].toLocaleLowerCase()}/${sheetname[1].toLocaleLowerCase()}/init`).config
-      // );
     } catch (e) {
       console.error("Can't get config");
       console.error(e.stack);
       return null;
     }
   }
-  public merge_env_var_to_Conf(config: FormConfig) {
-    // global.EnvironmentVariable[vartype][form][field]
 
-    try {
-      const env_vars = global.EnvironmentVariable["formfieldvalue"][config.Table_Item_LogicalName];
-      Object.typedKeys(env_vars).forEach((key) => {
-        config.table.columns.forEach((field) => {
-          if (field.LogicalName == key) {
-            console.log(key.toString() + "is" + field.LogicalName);
-            field.values = env_vars[key];
-            field.defalutValues = env_vars[key];
-          }
-        });
-      });
-      return config;
-    } catch (e) {
-      console.error("Can't get config");
-      console.error(e.stack);
-      return null;
-    }
-  }
   public init_button() {
     console.log("init_button... " + this.module);
     try {

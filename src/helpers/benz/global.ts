@@ -9,13 +9,6 @@ import * as Benz from "./type";
 import { PublicClientApplication, Configuration } from "@azure/msal-browser";
 
 declare global {
-  interface ObjectConstructor {
-    typedKeys<T>(obj: T): Array<keyof T>;
-  }
-}
-Object.typedKeys = Object.keys as any;
-
-declare global {
   var mode: Benz.AppMode;
 
   var modules: any;
