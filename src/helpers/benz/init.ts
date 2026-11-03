@@ -31,6 +31,8 @@ global.RowSpecialCase = [];
 
 global.EnvironmentVariable = {};
 
+global.itemStatus = [];
+
 // const accessScope = `api://${window.location.host}/${clientId}/user_impersonation`;
 global.environment_name = null; //"org8390b622";
 

@@ -125,4 +125,6 @@ declare global {
   var EnvironmentVariable: {};
 
   var ErrorMsg: string;
+
+  var itemStatus: any[];
 }

@@ -1702,6 +1702,38 @@ export async function setDataToTable(config, arr_data) {
         sheet.activate();
 
         await context.sync();
+
+        if (config.moduleTypeFullName == "Claim item") {
+          const enabledCols = config.table.columns
+          .filter((item) => item.enable)
+          .sort((a, b) => a.index - b.index);
+
+          const benzIdColIndex = enabledCols.findIndex((col) => col.LogicalName === "benz_id");
+
+          // Get table body range
+          let dataRange = expensesTable.getDataBodyRange();
+          dataRange.load("rowCount");
+          await context.sync();
+
+          let rowCount = dataRange.rowCount;
+          let startIndex = rowCount - arr_data.length; // Starting index of newly added rows
+
+          // Loop through newly added rows and check itemStatus using benz_id from arr_data
+          for (let i = 0; i < arr_data.length; i++) {
+            let actualRowIndex = startIndex + i;
+            let benzId = benzIdColIndex !== -1 ? arr_data[i][benzIdColIndex] : null;
+            let targetCell = dataRange.getCell(actualRowIndex, 2);
+
+            console.log(benzId);
+            console.log(global.itemStatus);
+            console.log(global.itemStatus[benzId]);
+            console.log(benzId !== null && global.itemStatus[benzId] != "650230000");
+            // If status is not "650230000", lock column index 2
+            if (benzId !== null && global.itemStatus[benzId] != "650230000") {
+              targetCell.format.protection.locked = true;
+            }
+          }
+        }
       } catch (e) {
         console.error(e.stack);
       }
