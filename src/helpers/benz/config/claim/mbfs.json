@@ -292,6 +292,7 @@
                 "mandatory": true,
                 "enable": true,
                 "specialcase": true,
+                "modifiable": "650230000",
                 "title": "Measure ID *",
                 "cell": {
                     "numberFormat": "@",

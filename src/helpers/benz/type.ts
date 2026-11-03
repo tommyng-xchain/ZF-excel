@@ -116,6 +116,7 @@ export type FormLayout = {
   setToString?: boolean;
   MemoNameGen?: boolean;
   useEnvironmentVaule?: string;
+  modifiable?: string;
 };
 
 export type Cell = {
@@ -275,6 +276,7 @@ export type TableColumns = {
   setToString?: boolean;
   MemoNameGen?: boolean;
   useEnvironmentVaule?: string;
+  modifiable?: string;
 };
 
 export type outOfTarget = {

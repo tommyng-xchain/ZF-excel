@@ -1743,10 +1743,16 @@ export async function set__tableData(response) {
   console.log(response);
   const conf = global.CurrentConfig.table.columns.filter((item) => item.enable);
   const arr = utils.ObjectToTableArray(conf, response.value);
+  global.itemStatus = [];
   global.lastnumber = Math.max.apply(
     Math,
     response.value.map((o) => o[global.CurrentConfig.Table_linenumber_LogicalName])
   );
+  response.value.forEach((item) => {
+    if (item.benz_id !== undefined && item.benz_id !== null) {
+      global.itemStatus[item.benz_id] = item.benz_claimitemstatus;
+    }
+  });
 
   console.log(arr);
   await utils.setDataToTable(global.CurrentConfig, arr);
