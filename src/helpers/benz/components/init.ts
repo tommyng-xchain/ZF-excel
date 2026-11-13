@@ -16,7 +16,7 @@ var jq = require("jquery");
 
 export const config: initConfig = require("../config/init.json");
 // import * as mode from "../../modeDialog";
-import * as BenzType from "../../benz/type";
+import { getBuildAppConfig, getBuildAppMode } from "../../mode/resolve-app-mode";
 
 Office.onReady(async (info) => {
   console.log("onload Office Ready");
@@ -30,10 +30,12 @@ Office.onReady(async (info) => {
     console.log("clientId", global.clientId);
     console.log("authority", global.authority);
     // await mode.showPopup(await getready_need_data);
-    var config = require(`../../mode/${BenzType.AppMode.PRODUCTION}/app.json`);
+    global.mode = getBuildAppMode();
+    var config = getBuildAppConfig();
     global.environment_name = config.environment_name;
     global.clientId = config.clientId;
     global.authority = config.authority;
+    console.log("app mode", global.mode);
     await getready_need_data();
     // loadingspinner(false);
   }

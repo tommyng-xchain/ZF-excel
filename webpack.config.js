@@ -1,5 +1,6 @@
 /* eslint-disable no-undef */
 
+const webpack = require("webpack");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const nodeExternals = require("webpack-node-externals");
@@ -10,6 +11,8 @@ const urlProd = "https://www.Benz.com/"; // CHANGE THIS TO YOUR PRODUCTION DEPLO
 
 module.exports = async (env, options) => {
   const dev = options.mode === "development";
+  const appMode = env && env.appMode === "uat" ? "uat" : "production";
+  console.log(`Building with appMode=${appMode}`);
   const config = [
     {
       devtool: "source-map",
@@ -79,6 +82,9 @@ module.exports = async (env, options) => {
         ],
       },
       plugins: [
+        new webpack.DefinePlugin({
+          __APP_MODE__: JSON.stringify(appMode),
+        }),
         new HtmlWebpackPlugin({
           filename: "taskpane.html",
           template: "./src/taskpane/taskpane.html",

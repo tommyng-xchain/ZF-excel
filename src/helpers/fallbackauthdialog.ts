@@ -9,9 +9,9 @@ import { Configuration, LogLevel, PublicClientApplication, RedirectRequest } fro
 import { callGetUserData } from "./middle-tier-calls";
 import { setAccount } from "./dataverse-data-helper";
 import { showMessage } from "./message-helper";
-import * as Benz from "./benz/type";
+import { getBuildAppConfig } from "./mode/resolve-app-mode";
 
-var config = require(`./mode/${Benz.AppMode.PRODUCTION}/app.json`);
+var config = getBuildAppConfig();
 
 /* global localStorage */
 export var token: string = null;
